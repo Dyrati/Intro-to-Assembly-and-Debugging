@@ -1,0 +1,65 @@
+html {
+    background-image: url(BinaryBackground.png);
+    background-size: 100%;
+}
+
+body {
+   font-family: Segoe UI;
+   background-color: white;
+   width: 65%;
+   margin: auto;
+   margin-top: 50px;
+   border: 1px solid lightgray;
+   padding: 50px;
+}
+
+h1, h2, h3 {
+    font-family: Arial;
+    padding: 8px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+p {
+    margin: 30px 0;
+    white-space: pre-wrap;
+}
+
+span {
+    line-height: 1.5em;
+    white-space: pre-wrap;
+}
+span.center {
+    display: block;
+    text-align: center;
+}
+
+table {
+    margin: auto;
+    font-family: monospace;
+    border-spacing: 0;
+    white-space: pre-wrap;
+}
+table.center {text-align: center;}
+th {
+    font-size: 18px;
+    padding: 0 10px;
+    border-bottom: 1px solid lightgray;
+}
+td {
+    padding: 2px 0;
+}
+
+code {
+    font-family: monospace;
+    background-color: rgb(234, 243, 242);
+    padding: 3px;
+    white-space: pre-wrap;
+}
+
+code.block {
+    display: block;
+    margin: 10px 0;
+    border-radius: 5px;
+    padding: 10px;
+    line-height: 1.5em;
+}
