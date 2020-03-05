@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assembly Guide</title>
+    <title>Intro to Binary</title>
     <link href=style.css type="text/css" rel="stylesheet">
 </head>
 <body>
-    
+
+<header>
+    <div>
+        <a href="index.html"><b>Intro to Binary</b></a>
+        <span class="sep"></span>
+        <a><b>Logic Gates</b></a>
+        <span class="sep"></span>
+        <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
+    </div>
+</header>
+
+<div id="Main-Page">
 <h1>Intro to Binary</h1>
 
 <p>The total number of unique symbols we need to encode all of the information known to mankind, is 2.  In 1689, the renowned mathematician and philosopher Gottfried Leibniz invented binary.  In his article, he outlined the rules of binary arithmetic.  Fast forward 200 years.  With the rise of the era of electricity, came the realization that by flipping electrical switches on and off, one could express the entirety of binary logic and arithmetic, and therefore, compute anything.</p>
@@ -81,7 +92,7 @@ To convert a decimal number to binary, it's easiest to try to construct your bin
 <span>
 Example: </span><code>53</code>
 <code class="block">53 - 2^5 = 21     //Subtract 2^5 (2^6 is too big)
-21 - 2^4 = 5      
+21 - 2^4 = 5
 5  - 2^2 = 1
 1  - 2^0 = 0
 Result: 2^5 + 2^4 + 2^2 + 2^0 = 110101
@@ -97,7 +108,7 @@ To add and subtract binary numbers, use the same methods you use in decimal:</sp
 
 <p>Even multiplication and division use the same methods as decimal, and it's easier in binary. (I won't go into detail here though).  If you must, then you can always convert to decimal first, perform the operation, then convert back to binary.</p>
 
-<p>So why is this useful?  With electricity, we can use a high voltage to represent 1, and a low voltage to represent 0.  By utilizing on and off switches, it is possible to combine those voltages in ways that exactly mimic all of binary arithmetic.  The ability to convert between binary and decimal bridges the gap between the computational capabilities of electrical circuits, and the math we learned in grade school.  With this knowledge, we can create machines to perform that math at the speed of light.  The next lesson will cover exactly how that's done.</p>
+<p>So why is this useful?  With electricity, we can use a high voltage to represent 1, and a low voltage to represent 0.  By utilizing on and off switches, it is possible to combine those voltages in ways that exactly mimic all of binary arithmetic.  The ability to convert between binary and decimal bridges the gap between the computational capabilities of electrical circuits, and the math we learned in grade school.  With this knowledge, we can create machines to perform that math at the speed of light.  This series will cover exactly how that's done.</p>
 
 
 <h2>Other Bases</h2>
@@ -147,22 +158,25 @@ Explanation:</span>
 
 <h2>Terminology and Usage</h2>
 
-<p>A single digit in binary is called a "bit".  Bits are often used to represent on/off, or true/false.  Bits are also used to represent integers, letters, and other symbols.  In modern computers, the smallest addressable units of memory, or "bytes", each contain 8 bits.  With 8 bits, you can represent any number from 0 to 255 (00000000 to 11111111).  In a basic text document, English letters are represented with one byte each, using the ASCII table.</p>
+<p>A single digit in binary is called a <b>bit</b>.  Bits are often used to represent on/off, or true/false.  Bits are also used to represent integers, letters, and other symbols.  In modern computers, the smallest addressable units of memory, or <b>bytes</b>, each contain 8 bits.  With 8 bits, you can represent any number from 0 to 255 (00000000 to 11111111).  In a basic text document, English letters are represented with one byte each, using the <a>ASCII table</a>.</p>
 
-<p>For any binary value, the least significant bit (lsb) is the rightmost bit, and the most significant bit (msb) is the leftmost bit.  To refer to a specific bit in a value, we number each bit from right to left, starting at 0.  The lsb is bit 0, the bit to the left of that is bit 1, left of that is bit 2, left of that is bit 3, etc.</p>
+<p>For any binary value, the least significant bit (<b>lsb</b>) is the rightmost bit, and the most significant bit (<b>msb</b>) is the leftmost bit.  To refer to a specific bit in a value, we number each bit from right to left, starting at 0.  The lsb is bit 0, the bit to the left of that is bit 1, left of that is bit 2, left of that is bit 3, etc.</p>
 
-<p>Registers are tiny containers of bits.  Bytes are typically contained within 8-bit registers.  Math done between registers is similar to math done with normal binary, except that any overflowed/underflowed bits are just dropped, swallowed by the void.</p>
+<p><b>Registers</b> are tiny containers of bits.  Bytes are typically contained within 8-bit registers.  Math done between registers is similar to math done with normal binary, except that any overflowed/underflowed bits are just dropped, swallowed by the void.</p>
 
 <p>For example, suppose you have an 8-bit register with the value 11001111.  To multiply it by 2, we shift each digit to the left: 110011110.  But in bit-shifting left, the number no longer fits within 8 bits, so the most significant bit (msb) is dropped, or "shifted out".  The result in the register is 10011110.  Similarly, if we divide by 2, we shift each digit to the right and the least significant bit (lsb) is shifted out.</p>
+
+<img src="Figure 1.png">
 
 <p>This has an interesting side effect: 11111111 + 1 = 100000000, which becomes 0 because the msb doesn't fit inside the 8-bit register.  This effect is called "rolling over", meaning that the operation passed the max value, and landed on or crossed over 0.  Conveniently, this allows us to express negative numbers in registers.</p>
 
 
 <h2>Negative Numbers</h2>
 
-<p>The defining property of negative numbers is that when added to their positive counterparts, they result in 0: x + -x = 0
+<p>The defining property of negative numbers is that when added to their positive counterparts, they result in 0
 
-To express -1 in an 8-bit register, you would actually use 11111111, because when you add 1 to that, you get 0.  To express -1 in a larger register, you'd need to fill the whole register with 1's. A useful shortcut for finding the negative of a number is to flip every bit, then add 1.</p>
+<span class="center"><code>x + -x = 0</code></span>
+To express -1 in an 8-bit register, you would actually use 11111111, because when you add 1 to that, it rolls over to 0.  To express -1 in a larger register, you'd need to fill the whole register with 1s.  A useful shortcut for finding the negative of a number is to flip every bit, then add 1.</p>
 
 <p>Why not just use a negative sign?  The negative sign is a symbol.  It's another form of information.  Remember, our register can only store information using 2 symbols, 0 and 1, aka low or high voltage.  While it is possible to use a separate register for each number to represent positive/negative, that method is far less efficient, and more difficult to hard-wire into a computer chip.
 
@@ -172,6 +186,17 @@ Note that 11111111 means either 255 or -1 in an 8-bit register. Which way to int
 At the physical level, a 1-bit register is made up of an electrical circuit containing just a handful of electrical switches 
 (transistors) in a very clever arrangement.  This circuit has the ability to store an electrical signal, and output it 
 continuously, until the signal is overwritten, or the computer is turned off.  It will be covered in the next lesson.</p>
+</div>
+
+<footer>
+    <div>
+        <a href="index.html"><b>Intro to Binary</b></a>
+        <span class="sep"></span>
+        <a><b>Logic Gates</b></a>
+        <span class="sep"></span>
+        <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
+    </div>
+</footer>
 
 </body>
 </html>

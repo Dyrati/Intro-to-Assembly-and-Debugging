@@ -1,22 +1,48 @@
-html {
+body {
     background-image: url(BinaryBackground.png);
     background-size: 100%;
+    font-family: Segoe UI;
+    margin: 0;
+    border: 1px solid rgba(0,0,0,0);
 }
 
-body {
-   font-family: Segoe UI;
-   background-color: white;
-   width: 65%;
-   margin: auto;
-   margin-top: 50px;
-   border: 1px solid lightgray;
-   padding: 50px;
+#Main-Page {
+    background-color: white;
+    width: 65%;
+    margin: 50px auto 50px auto;
+    border: 1px solid lightgray;
+    padding: 50px;
+    box-shadow: 0 0 10px 0 gray;
 }
+
+header, footer {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: black;
+    color: white;
+    height: 50px;
+}
+header div, footer div {cursor: pointer}
+
+.sep {
+    width: 1px;
+    border-right: 1px solid darkgray;
+}
+
+header a, footer a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+header a:hover, footer a:hover {color: rgb(0, 255, 221);}
 
 h1, h2, h3 {
     font-family: Arial;
     padding: 8px;
     border-bottom: 1px solid rgb(230, 230, 230);
+    text-shadow: 2px 2px 2px lightgray;
 }
 
 p {
@@ -31,6 +57,11 @@ span {
 span.center {
     display: block;
     text-align: center;
+}
+
+img {
+    display: block;
+    margin: auto;
 }
 
 table {
@@ -52,7 +83,7 @@ td {
 code {
     font-family: monospace;
     background-color: rgb(234, 243, 242);
-    padding: 3px;
+    padding: 2px 4px;
     white-space: pre-wrap;
 }
 
