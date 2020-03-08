@@ -166,7 +166,7 @@ DA2F = 1101 1010 0010 1111
 
 <p>For example, suppose you have an 8-bit register with the value 11001111.  To multiply it by 2, we shift each digit to the left: 110011110.  But in bit-shifting left, the number no longer fits within 8 bits, so the most significant bit (msb) is dropped, or "shifted out".  The result in the register is 10011110.  Similarly, if we divide by 2, we shift each digit to the right and the least significant bit (lsb) is shifted out.</p>
 
-<img src="Images/Figure 1.png">
+<img src="Images/Figure 1-1.png">
 
 <p>This has an interesting side effect: 11111111 + 1 = 100000000, which becomes 0 because the msb doesn't fit inside the 8-bit register.  This effect is called "rolling over", meaning that the operation passed the max value, and landed on or crossed over 0.  Conveniently, this allows us to express negative numbers in registers.</p>
 
