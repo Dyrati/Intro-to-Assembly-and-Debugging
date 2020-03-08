@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logic Gates</title>
+    <link href=style.css type="text/css" rel="stylesheet">
+</head>
+<body>
+
+<header class="flex">
+    <div>
+        <a href="index.html"><b>Intro to Binary</b></a>
+        <span class="sep"></span>
+        <a href="Logic Gates.html"><b>Logic Gates</b></a>
+        <span class="sep"></span>
+        <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
+    </div>
+</header>
+
+<div id="Main-Page">
+
+<h1>Logic Gates</h1>
+
+<p>Logic gates are the building blocks of computers.  They are the atoms of our periodic table of elements.  All the complexity and intelligence of computers is built from these basic components.</p>
+
+<table>
+    <tr><th style="text-align: center">Icon</th><th>Gate</th><th>Effect</th></tr>
+    <tr><td><img src="Icons/NOT.png"></td><td>NOT</td><td>Outputs the opposite value of the input</td></tr>
+    <tr><td><img src="Icons/AND.png"></td><td>AND</td><td>Outputs 1 if both inputs are 1, otherwise, outputs 0</td></tr>
+    <tr><td><img src="Icons/OR.png"></td><td>OR</td><td>Outputs 1 if either input is 1, otherwise, outputs 0</td></tr>
+    <tr><td><img src="Icons/XOR.png"></td><td>XOR</td><td>Outputs 1 if exactly one of its inputs are 1, otherwise, outputs 0</td></tr>
+</table>
+
+<p>If you can replicate these four gates with any system of inputs and outputs, you can use them to build an entire computer.  Each gate's output must always reflect the values of its inputs, and those outputs may be used as the inputs of other gates.  It doesn't necessarily have to use electrical signals.</p>
+
+<p>Minecraft has become a powerful simulator for brilliant computer scientists and engineers because of its ability to replicate each of the logic gates in game.  People have built general purpose computers on an incredible scale, allowing you to literally see every last building block of a computer.  Some of them can even execute programs written in human languages.  Someone even built a fully functional Atari in minecraft, without mods.</p>
+
+<p>There are also names and symbols for the opposites of each of the above logic gates:</p>
+
+<table>
+    <tr><th style="text-align: center">Icon</th><th>Gate</th><th>Effect</th></tr>
+    <tr><td><img src="Icons/Buffer.png"></td><td>Buffer</td><td>Outputs the same value as the input</td></tr>
+    <tr><td><img src="Icons/NAND.png"></td><td>NAND</td><td>Outputs 0 if both inputs are 1, otherwise, outputs 1</td></tr>
+    <tr><td><img src="Icons/NOR.png"></td><td>NOR</td><td>Outputs 0 if either input is 1, otherwise, outputs 1</td></tr>
+    <tr><td><img src="Icons/XNOR.png"></td><td>XNOR</td><td>Outputs 0 if exactly one of its inputs are 1, otherwise, outputs 1</td></tr>
+</table>
+
+<p>These gates are logically identical to sticking a NOT gate at the end of each of the primary 4 gates (note the circle at the end of the icons).  NAND and NOR are special.  From either of those, you can actually construct all of the other logic gates.  In fact, there is a free online course in which you build an entire computer from nothing but NAND gates.  It's called Nand to Tetris, and I highly recommend it.</p>
+
+<h2>Truth Tables</h2>
+
+<p>You can think of a computer as a complex input/output device, and logic gates as the most basic input/output devices.  To learn how to combine the basic components to build complex ones, we'll need to use Truth Tables.</p>
+
+<div class="flex">
+    <table class="centertxt">
+        <tr><th colspan="2">NOT(A)</th></tr>
+        <tr><td><b>A</b></td><td><b>Out</b></td></tr>
+        <tr><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td></tr>
+    </table>
+    <table class="centertxt">
+        <tr><th colspan="3">A AND B</th></tr>
+        <tr><td><b>A</b></td><td><b>B</b></td><td><b>Out</b></td></tr>
+        <tr><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td></tr>
+    </table>
+    <table class="centertxt">
+        <tr><th colspan="3">A OR B</th></tr>
+        <tr><td><b>A</b></td><td><b>B</b></td><td><b>Out</b></td></tr>
+        <tr><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td></tr>
+    </table>
+    <table class="centertxt">
+        <tr><th colspan="3">A XOR B</th></tr>
+        <tr><td><b>A</b></td><td><b>B</b></td><td><b>Out</b></td></tr>
+        <tr><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td></tr>
+    </table>
+</div>
+
+<p>Truth Tables are comprehensive lists of outputs for each possible input.  "A OR B" for example has two inputs: <code>A</code> and <code>B</code>, and one output: <code>Out</code>.  With this notation, <code>NOT</code>, <code>AND</code>, <code>OR</code>, and <code>XOR</code> are like arithmetic operations.  To evaluate the output, evaluate anything inside of parentheses first.  Without parentheses, logic gates are evaluated in the order: <code>NOT > AND > OR/XOR</code>.</p>
+
+<span>Example 1: <code>NOT(0 OR (1 AND 1))</code></span>
+<code class="block">NOT(0 OR (1 AND 1))     // (1 AND 1) --> 1
+NOT(0 OR 1)             // (0 OR 1) --> 1
+NOT(1)                  // NOT(1) --> 0
+0
+</code>
+
+<span>Example 2: <code>1 AND NOT 1 OR 0 AND NOT 0</code></span>
+<code class="block">1 AND NOT 1 OR 0 AND NOT 0      // evaluate NOTs
+1 AND 0 OR 1 AND 1              // evaluate ANDs
+0 OR 1                          // evaluate OR
+1
+</code>
+
+
+<p>We can write expressions with more logic gates, and obtain new Truth Tables.  To construct a truth table for a given logic gate expression, go through every combination of inputs, and evaluate the output for each.</p>
+
+<div class="flex">
+    <table class="centertxt">
+        <tr><th colspan="2">A OR NOT(A)</th></tr>
+        <tr><td><b>A</b></td><td><b>Out</b></td></tr>
+        <tr><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td></tr>
+    </table>
+    <table class="centertxt">
+        <tr><th colspan="3">A AND NOT(B)</th></tr>
+        <tr><td><b>A</b></td><td><b>B</b></td><td><b>Out</b></td></tr>
+        <tr><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td></tr>
+    </table>
+    <table class="centertxt">
+        <tr><th colspan="3">NOT(A) AND NOT(B)</th></tr>
+        <tr><td><b>A</b></td><td><b>B</b></td><td><b>Out</b></td></tr>
+        <tr><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td></tr>
+    </table>
+    <table class="centertxt">
+        <tr><th colspan="4">A OR B OR C</th></tr>
+        <tr><td><b>A</b></td><td><b>B</b></td><td><b>C</b></td><td><b>Out</b></td></tr>
+        <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+        <tr><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>0</td><td>1</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+        <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+    </table>
+</div>
+
+<h2>Boolean Expressions</h2>
+
+<p>Truth Tables allow us to compare any two logic gate expressions (aka Boolean Expressions).  If two expressions result in the same truth table, then the expressions are equivalent.  You can exchange one for the other without impacting the output.  That may however affect the efficiency.  Each logic gate takes some small amount of time to produce a stable output, and uses some energy, so fewer gates = faster calculation and less heat.</p>
+
+<p>Evaluating boolean expressions might seem kind of pointless... until you realize that there is a way to convert <em>any</em> truth table into a boolean expression.  It turns out that there is an easy, systematic way to generate any table of outputs you desire, given unlimited logic gates to work with.  Here's how:</p>
+
+<ol>
+    <li>For each 1 in the <code>Out</code> column, write an expression that requires the exact inputs of that row</li>
+    <li>Connect all those expressions together with OR gates</li>
+    <li>Simplify</li>
+</ol>
+
+<span>Example:</span>
+
+<table class="center centertxt">
+    <tr><th colspan="4">?</th></tr>
+    <tr><td><b>A</b></td><td><b>B</b></td><td><b>C</b></td><td><b>Out</b></td></tr>
+    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+    <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+    <tr><td>0</td><td>1</td><td>0</td><td>1</td><td style="text-align: left"><code>NOT(A) AND B AND NOT(C)</code></td></tr>
+    <tr><td>0</td><td>1</td><td>1</td><td>1</td><td style="text-align: left"><code>NOT(A) AND B AND C</code></td></tr>
+    <tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+    <tr><td>1</td><td>0</td><td>1</td><td>1</td><td style="text-align: left"><code>A AND NOT(B) AND C</code></td></tr>
+    <tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td style="text-align: left"><code>A AND B AND C</code></td></tr>
+</table>
+
+<br>
+<span>OR all of the expressions together:</span>
+<code class="block">(NOT(A) AND B AND NOT(C)) OR (NOT(A) AND B AND C) OR (A AND NOT(B) AND C) OR (A AND B AND C)</code>
+<span>Simplify:</span>
+<code class="block">(NOT(A) AND B) OR (A AND NOT(B) AND C) OR (A AND B AND C)
+(NOT(A) AND B) OR (A AND C)</code>
+
+<p>If you create a truth table using that final expression, you should get the same truth table as the original.  The simplification step can be tricky.  In this case, I used the fact that <code>(X AND Y) OR (X AND NOT(Y))</code> always equals <code>X</code>.</p>
+
+<p>There are several useful and common tricks for simplifying boolean expressions.  Some may seem obvious, others not so much.</p>
+<table>
+    <tr><td>Tautology</td><td><code>x OR NOT(x) = 1</code></td></tr>
+    <tr><td>Contradiction</td><td><code>x AND NOT(x) = 0</code></td></tr>
+    <tr><td> </td></tr>
+    <tr><td rowspan="2">Commutative Laws</td><td><code>x AND y = y AND x</code></td></tr>
+    <tr><td><code>x OR y = y OR x</code></td></tr>
+    <tr><td> </td></tr>
+    <tr><td rowspan="2">Associative Laws</td><td><code>x AND (y AND z) = (x AND y) AND z</code></td></tr>
+    <tr><td><code>x OR (y OR z) = (x OR y) OR z</code></td></tr>
+    <tr><td> </td></tr>
+    <tr><td rowspan="2">Distributive Laws</td><td><code>x AND (y OR z) = (x AND y) OR (x AND z)</code></td></tr>
+    <tr><td><code>x OR (y AND z) = (x OR y) AND (x OR z)</code></td></tr>
+    <tr><td> </td></tr>
+    <tr><td rowspan="2">DeMorgan's Laws</td><td><code>NOT(x AND y) = NOT(x) OR NOT(y)</code></td></tr>
+    <tr><td><code>NOT(x OR y) = NOT(x) AND NOT(y)</code></td></tr>
+</table>
+
+<p>I wouldn't bother memorizing these laws.  It's far more effective to try to reason <em>why</em> the stuff on the left of each equals sign <em>implies</em> the stuff on the right.</p>
+
+<p>For example, take DeMorgan's second law: <code>NOT(x OR y) = NOT(x) AND NOT(y)</code>.  The trick to this one is to ask the right question: When is <code>x OR y</code> 0?  Answer: when both x <b><em>and</em></b> y are 0.  Rephrasing, <code>x OR y</code> is 0 when <code>x</code> is 0 and <code>y</code> is 0, or in other words, <code>NOT(x OR y)</code> is 1 when <code>NOT(x) AND NOT(y)</code> is 1.  I'd recommend also trying to reason through DeMorgan's first law, and the Distributive Laws for practice.</p>
+
+
+<h2>Real World Implementation</h2>
+
+<p>Designing an actual computer requires you to create combinations of logic gates to produce specific truth tables.  A combination of logic gates that serves some specific purpose is called a <b>chip</b>. (For programmers, it's like a function.)  The design process has you begin with the basic gates, using them to build combinations of gates.  These high-level chips then get combined into even higher level chips.  The chips are like mathematical operations.  You build upon the operations you've already created to create more features and operations you can use.  Eventually, you're left with one super-chip, called a computer, which has the power to execute machine code instructions (which are just 1s and 0s).  It'll generally be clear what exactly you <em>want</em> each chip to do, but it's up to you to figure out how to actually compose that behavior from logic gates.</p>
+
+<p>There are a few ubiquitous chips that should be mentioned: The Multiplexer, the Demultiplexer, and the RS NOR Latch.  The Multiplexer takes three Inputs: A, B, and Sel.  If Sel is 0, then it outputs A.  If Sel is 1, then it outputs B.  You can combine a few multiplexers to create versions that can select from one of many different inputs based on a multi-bit Sel input.  The Demultiplexer is the reverse.  It has multiple outputs, and sends the input to <em>one</em> of those outputs based on Sel.  Together, these are used to manage memory, and make decisions for the computer.</p>
+
+<p>The RS NOR Latch is a clever logic gate circuit that can store a signal.  To understand it, first consider this logic circuit: Two NOT gates feeding into each other.  We'll call them N1 and N2.</p>
+
+<img src="Images/Figure 2.png">
+    
+<p>Suppose N1's input is off.  Its output will be on, which is also N2's input, so N2's output is off.  That is a stable configuration, with the power sitting on one side of the circuit (in front of N1).  Now, suppose you momentarily supplied power to N1's input.  Its output turns off, which turns on N2's output.  Again it's a stable configuration, but the power is sitting behind N1.  This circuit is the key to memory.</p>
+
+<p>The RS NOR Latch is that same circuit, but with NOR gates instead of NOT gates, which is effectively identical to adding a second input to each NOT gate.  The second input is what's used to "supply power" to one side momentarily.  (NAND gates are often used instead of NOR gates in practice, but it's the same concept.)  The ability to store data dramatically increases the possibilities.  With just this knowledge, someone could write a fully fledged game using nothing but logic gates (I don't recommend it).</p>
+
+<p>There is however, one more critical element to a computer, the clock.  The clock is simply an oscillator, alternating between low and high voltage at breakneck speed.  Its purpose is to limit the points in time that memory is read/written to.  It gives all the logic gates in the system enough time to settle on their voltages, and then the clock becomes high.  Only when the clock is high, will memory be modified.  After that, the clock goes low while the logic gates of the system settle on their next state, and the cycle continues.</p>
+
+</div>
+
+<footer class="flex">
+    <div>
+        <a href="index.html"><b>Intro to Binary</b></a>
+        <span class="sep"></span>
+        <a href="Logic Gates.html"><b>Logic Gates</b></a>
+        <span class="sep"></span>
+        <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
+    </div>
+</footer>
+
+</body>
+</html>

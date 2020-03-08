@@ -8,11 +8,11 @@
 </head>
 <body>
 
-<header>
+<header class="flex">
     <div>
         <a href="index.html"><b>Intro to Binary</b></a>
         <span class="sep"></span>
-        <a><b>Logic Gates</b></a>
+        <a href="Logic Gates.html"><b>Logic Gates</b></a>
         <span class="sep"></span>
         <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
     </div>
@@ -33,14 +33,14 @@
     <li>to increment the symbol 9, reset it to 0, then increment the symbol to its left</li>
 </ul>
 
-<p>Because of these rules, the symbol 10 in decimal represents ten groups of 1, 100 represents ten groups of 10, 1000 represents ten groups of 100, etc.  In general, any symbol S followed by n zeroes represents S*(10^n)</p>
+<p>Because of these rules, the symbol 10 in decimal represents ten groups of 1, 100 represents ten groups of 10, 1000 represents ten groups of 100, etc.  In general, any symbol <code>S</code> followed by <code>n</code> zeroes represents <code>S*(10^n)</code></p>
 
 <p>In binary, we do exactly the same thing.  To increment the symbol 1, we reset it to 0, then increment the symbol to its left.
 In binary, the symbol 10 represents two groups of 1, 100 represents two groups of 10, 1000 represents two groups of 100, and so on.
 
 To generalize: any symbol <code>S</code> followed by <code>n</code> zeroes reperesents <code>S*(2^n)</code>.</p>
 
-<table class="center">
+<table class="center centertxt">
     <tr><th>Decimal</th><th>Binary</th></tr>
     <tr><td>0</td><td>0</td></tr>
     <tr><td>1</td><td>1</td></tr>
@@ -62,11 +62,9 @@ To generalize: any symbol <code>S</code> followed by <code>n</code> zeroes reper
     1*(2^5) + 1*(2^4) + 0*(2^3) + 1*(2^2) + 0*(2^1) + 1*(2^0)   //Replace with the quantities they represent
       32   +    16   +     0    +    4    +    0    +    1      = 53</code>
 
-
-<span class="center">
-<span style="border-bottom: 1px solid lightgray">It will help to memorize powers of 2</span>
-</span>
-<table>
+<br>
+<span class="center"><span style="border-bottom: 1px solid lightgray">It will help to memorize powers of 2</span></span>
+<table class="center">
     <tr><td>2^0  = 1</td></tr>
     <tr><td>2^1  = 2</td></tr>
     <tr><td>2^2  = 4</td></tr>
@@ -80,17 +78,17 @@ To generalize: any symbol <code>S</code> followed by <code>n</code> zeroes reper
     <tr><td>2^10 = 1024</td></tr>
 </table>
 
-<span>
-To convert a decimal number to binary, it's easiest to try to construct your binary number one digit at a time, from left to right, using the following method:</span>
-<ol>
+<br>
+<span>To convert a decimal number to binary, it's easiest to try to construct your binary number one digit at a time, from left to right, using the following method:</span>
+<ul>
     <li>find the largest power of 2 that will fit inside of the total number</li>
     <li>subtract that power of 2 from the total</li>
     <li>repeat the process on what remains</li>
     <li>for the answer, write 1's in positions corresponding to the powers of 2 you used, and 0's elsewhere</li>
-</ol>
+</ul>
 
-<span>
-Example: </span><code>53</code>
+<br>
+<span>Example: </span><code>53</code>
 <code class="block">53 - 2^5 = 21     //Subtract 2^5 (2^6 is too big)
 21 - 2^4 = 5
 5  - 2^2 = 1
@@ -98,8 +96,8 @@ Example: </span><code>53</code>
 Result: 2^5 + 2^4 + 2^2 + 2^0 = 110101
 </code>
 
-<span>
-To add and subtract binary numbers, use the same methods you use in decimal:</span>
+<br>
+<span>To add and subtract binary numbers, use the same methods you use in decimal:</span>
 <ul>
     <li>add/subtract digit by digit, from right to left</li>
     <li>if adding, carry a 1 if the previous digits add up to more than 1</li>
@@ -125,13 +123,15 @@ F = 1111
 DA2F = 1101 1010 0010 1111
 </code>
 
-<span>
-Explanation:</span>
+<br>
+<span>Explanation:</span>
     <p style="margin: 0 0 30px 30px">In hexadecimal, any symbol <code>S</code> followed by <code>n</code> zeroes represents <code>S*(16^n)</code>.  <code>16^n</code> is the same as <code>2^(4n)</code>.  For this reason, appending a 0 to a hex number (increasing <code>n</code> by 1) is the same as appending four 0's to its binary form (each process multiplies the number by 16).  For example, <code>B</code> in hex is 1011 in binary, while <code>B0</code> in hex is 10110000 in binary.  To deduce the binary quantity of a hex number, we can again add up the quantities that each digit represents. In the example above, <code>DA2F</code>, we can think of it as <code>D000 + A00 + 20 + F</code>.  <code>D000</code> in binary would be 1101 0000 0000 0000, <code>A00</code> would be 1010 0000 0000, <code>20</code> would be 0010 0000, and <code>F</code> would be 1111.  Adding them up gives the same result as the example above.</p>
 
-<span>It will also help to memorize the conversions for each hex digit (note that the first 10 are identical to the decimal conversions)</span>
+<span class="center">It will also help to memorize the conversions for each hex digit
+(note that the first 10 are identical to the decimal conversions)</span>
+<br>
 
-<table class="center">
+<table class="center centertxt">
     <tr><th>Hexadecimal</th><th>Binary</th></tr>
     <tr><td>0</td><td>0</td></tr>
     <tr><td>1</td><td>1</td></tr>
@@ -166,7 +166,7 @@ Explanation:</span>
 
 <p>For example, suppose you have an 8-bit register with the value 11001111.  To multiply it by 2, we shift each digit to the left: 110011110.  But in bit-shifting left, the number no longer fits within 8 bits, so the most significant bit (msb) is dropped, or "shifted out".  The result in the register is 10011110.  Similarly, if we divide by 2, we shift each digit to the right and the least significant bit (lsb) is shifted out.</p>
 
-<img src="Figure 1.png">
+<img src="Images/Figure 1.png">
 
 <p>This has an interesting side effect: 11111111 + 1 = 100000000, which becomes 0 because the msb doesn't fit inside the 8-bit register.  This effect is called "rolling over", meaning that the operation passed the max value, and landed on or crossed over 0.  Conveniently, this allows us to express negative numbers in registers.</p>
 
@@ -188,11 +188,11 @@ At the physical level, a 1-bit register is made up of an electrical circuit cont
 continuously, until the signal is overwritten, or the computer is turned off.  It will be covered in the next lesson.</p>
 </div>
 
-<footer>
+<footer class="flex">
     <div>
         <a href="index.html"><b>Intro to Binary</b></a>
         <span class="sep"></span>
-        <a><b>Logic Gates</b></a>
+        <a href="Logic Gates.html"><b>Logic Gates</b></a>
         <span class="sep"></span>
         <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
     </div>
