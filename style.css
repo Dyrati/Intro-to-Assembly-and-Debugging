@@ -46,11 +46,15 @@ header a:hover, footer a:hover {
     color: rgb(0, 255, 221);
 }
 
-h1, h2, h3 {
+h1, h2 {
     font-family: Arial;
     padding: 8px;
     border-bottom: 1px solid rgb(230, 230, 230);
     text-shadow: 2px 2px 2px lightgray;
+}
+
+h3 {
+    border-bottom: 1px solid rgb(230, 230, 230);
 }
 
 p {
@@ -82,20 +86,22 @@ table {
     margin: 30px 10px;
 }
 
-table.center {margin: auto;}
-table.centertxt {text-align: center;}
+table.txt14 {
+    font-size: 14px;
+}
+
+table.footnote {
+    display: block;
+    font-size: 12px;
+}
+
+.center {margin: auto;}
+.centertxt {text-align: center;}
 
 th {
     font-size: 18px;
     padding: 0 10px;
     border-bottom: 1px solid lightgray;
-}
-
-@media screen and (max-width: 800px) {
-    body {font-size: 12px}
-    #Main-Page {margin: 20px auto; padding: 20px; width: 75%}
-    th {font-size: 14px}
-    code {font-size: 11px}
 }
 
 td {
@@ -115,4 +121,29 @@ code.block {
     border-radius: 5px;
     padding: 10px;
     line-height: 1.5em;
+}
+
+.quote {
+    font-family: "Constantia";
+    font-size: 18px;
+    display: inline-block;
+    margin: auto;
+    background-color: rgb(234, 234, 234);
+    padding: 25px;
+    margin: 10px 0;
+}
+
+#ThumbInstructions table {
+    margin: 10px;
+}
+#ThumbInstructions table th {
+    padding: 12px;
+}
+
+@media screen and (max-width: 1000px) {
+    body {font-size: 12px}
+    #Main-Page {margin: 20px auto; padding: 20px; width: 75%}
+    th {font-size: 14px}
+    code {font-size: 11px}
+    .quote {font-size: 14px}
 }

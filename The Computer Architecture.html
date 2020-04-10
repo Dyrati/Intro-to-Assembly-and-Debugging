@@ -15,6 +15,8 @@
         <a href="Logic Gates.html"><b>Logic Gates</b></a>
         <span class="sep"></span>
         <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
+        <span class="sep"></span>
+        <a href="The Thumb Assembly Language.html"><b>The Thumb Assembly Language</b></a>
     </div>
 </header>
 
@@ -31,15 +33,32 @@
 
 <p>When input and output devices, like your keyboard, mouse, and monitor, are plugged in, their memory is assimilated into the computer's memory, which allows the computer to freely modify the memory of those devices, and/or respond to electrical signals from them.  By modifying specific bytes in your monitor's memory, it can change the color of pixels.  By reading the registers of your keyboard, it can see what keys you pressed, and modify its own memory based on your inputs.</p>
 
-<p>The CPU is a convoluted web of logic gates whose purpose is to process specific electrical signals, and use them to modify its own internal state, and also produce output signals. Within the CPU, there are very small memory units called registers.  Because they are so small and close to the CPU, they can be modified at incredible speed, and most instructions do nothing but modify those registers.</p>
+<p>The CPU is a convoluted web of logic gates whose purpose is to process specific electrical signals, and use them to modify its own internal state, and also produce output signals. Within the CPU, there are very small memory units called <b>registers</b>.  Because they are so small and close to the CPU, they can be modified at incredible speed, and most instructions do nothing but modify those registers.</p>
 
 <p>So how does the CPU modify memory?  The output signals of the CPU are connected to the inputs of other devices.  RAM (Random Access Memory) is a type of memory unit that has three inputs (an <code>address</code>, a <code>value</code>, and a <code>write bit</code>) and one output (a <code>value</code>).  Within the RAM, there are millions of tiny 8-bit registers, each containing one byte.  There are also millions of multiplexers used to select exactly one of those bytes based on the <code>address</code> input.  The RAM always outputs the value of the byte at the inputted <code>address</code>.  If the <code>write bit</code> is on, then it will overwrite that byte with the <code>value</code> input.  The CPU uses those inputs and outputs to read from/write to the RAM.</p>
 
 <img src="Images/Figure 3-3.png">
 
-<p>The moment a computer is powered on, the CPU receives an instruction from address 0 of the Instruction Memory (also called read-only memory, or ROM).  ROM is very much like RAM, except that it only has one input (an <code>address</code>) and one output (a <code>value</code>).  The instruction causes the CPU to modify its own registers and outputs.  It could add one register to another, or subtract, multiply, or bitshift.  It could move one register to another, it could use logical operations on registers, it could store its registers in RAM, or it could load values from RAM into its registers.  In some cases, it could produce a pseudo-random number, or even encrypt data.  The possibilities are limited only by the types of instructions that were hard-wired into the CPU.  The instruction itself is made up of electrical signals, many of which flip tiny logical switches, and others get stored in registers.</p>
+<p>The moment a computer is powered on, the CPU receives an instruction from address 0 of the Instruction Memory (which is often read-only memory, or ROM).  ROM is very much like RAM, except that it only has one input (an <code>address</code>) and one output (a <code>value</code>).  The instruction causes the CPU to modify its own registers and outputs.  It could add one register to another, or subtract, multiply, or bitshift.  It could move one register to another, it could use logical operations on registers, it could store its registers in RAM, or it could load values from RAM into its registers.  In some cases, it could produce a pseudo-random number, or even encrypt data.  The possibilities are limited only by the types of instructions that were hard-wired into the CPU.  The instruction itself is made up of electrical signals, many of which flip tiny logical switches, and others which get stored in registers.</p>
 
 <p>There is one special register in the CPU called the "program counter".  This register can be modified, and is continuously fed back into the ROM to determine which instruction to receive next.</p>
+
+<h2>Computability</h2>
+<em>   A general purpose computer is a blank canvas.  Programming languages are your palettes, and text editors are your brushes.</em>
+
+<p>A <b>computation</b> is any process that can be described by a set of unambiguous instructions.  In 1936, Alan Turing proved that the set of all things computable can be reduced to the capabilities of a very simple machine, a <b>Turing Machine</b>.  No deterministic mechanism can ever surpass the theoretical capabilities of a Turing machine, and conversely, <em>anything</em> that can emulate a Turing machine can perform any computation, given infinite time and memory.</p>
+
+<img src="Images/Figure 3-4.png">
+
+<br>
+<div class="centertxt">
+    <div class="quote">
+        <span><b>Church-Turing Thesis</b></span><br><br>
+        <span><em>Anything</em> that can be computed can be computed with a Turing Machine</span>
+    </div>
+</div>
+
+<p>Built into computer chips is a small set of instructions, from which it is possible to execute any computer algorithm.  An <b>Assembly Language</b> is the set of all instructions hard-wired into a general purpose computer chip.  Assembly languages are <b>Turing Complete</b>, meaning they can emulate a Turing machine, and thus can perform <em>any</em> computation using some combination of instructions.  Every program run on your computer is first translated into a list of assembly language instructions, then executed.  With special programs called <b>debuggers</b>, you can read each program instruction, one at a time, deduce how <em>everything</em> works, and even modify it as you see fit.</p>
 </div>
 
 <footer class="flex">
@@ -49,6 +68,8 @@
         <a href="Logic Gates.html"><b>Logic Gates</b></a>
         <span class="sep"></span>
         <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
+        <span class="sep"></span>
+        <a href="The Thumb Assembly Language.html"><b>The Thumb Assembly Language</b></a>
     </div>
 </footer>
 
