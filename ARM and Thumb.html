@@ -36,9 +36,9 @@
     <div class="quote"><span><em>Assembly instructions work by either modifying CPU registers, or the RAM.</em></span></div>
 </div>
 
-<p>The CPU has 16 normal registers: <code>R0, R1, R2, R3, ... R15</code>, and a status register: <code>cpsr</code>, aka the <b>flags</b>.  Each register is 32 bits large, or 4 bytes.  <code>R13-R15</code> serve special purposes, and have alternate aliases.  <code>R13</code> is the <b>stack pointer</b>, or <code>sp</code>.  <code>R14</code> is the <b>link register</b>, or <code>lr</code>.  <code>R15</code> is the <b>program counter</b>, or <code>pc</code>.  These will all be explained in detail later in this section.</p>
+<p>The CPU has 16 normal registers: <code>R0, R1, R2, R3, ... R15</code>, and a status register: <code>cpsr</code>.  Each register is 32 bits large, or 4 bytes.  <code>R13-R15</code> serve special purposes, and have alternate aliases.  <code>R13</code> is the <b>stack pointer</b>, or <code>sp</code>.  <code>R14</code> is the <b>link register</b>, or <code>lr</code>.  <code>R15</code> is the <b>program counter</b>, or <code>pc</code>.  These will all be explained in detail <a href="#specialregisters">later in this section.</a></p>
 
-<p>The CPU has an <b>ALU</b> inside of it, which stands for <em>Arithmetic Logic Unit</em>.  The ALU performs arithmetic and logical operations on its inputs, updating the flags as it does so.</p>
+<p>The CPU has an <b>ALU</b> inside of it, which stands for <em>Arithmetic Logic Unit</em>.  The ALU performs arithmetic and logical operations on its inputs, updating <code>cpsr</code> as it does so.</p>
 
 <p>The memory is an enormous array of bytes.  Each byte has an address.  The first byte is at address 0, the next byte is at address 1, the next byte is at address 2, etc.  Devices that are plugged in to the computer are actually connected directly to regions of that memory space.  The working RAM of the Gameboy Advance starts at address 0x02000000.  The ROM starts at address 0x08000000.  Other devices such as LCD controllers, Sound controllers, and Keypads have their own address spaces too.</p>
 
@@ -47,9 +47,9 @@
 <p>Below is the complete list of Thumb instructions.
     
 <b>Key/Symbols</b>
-<code>Rx</code>, <code>Ry</code>, and <code>Rz</code> are registers.  <code>nn</code> is a number (aka an <em>immediate</em> number).  <code>a = b</code> is a programmer's way of writing: "The value of <code>a</code> <em>becomes</em> the value of <code>b</code>".  <code>Void = x</code> means the result of <code>x</code> is dropped, but still updates the flags.  <code>x << y</code> means "Bitshift <code>x</code> to the left <code>y</code> times, dropping any bits that leave the register."  <code>x >> y</code> is the opposite. </p>
+<code>Rx</code>, <code>Ry</code>, and <code>Rz</code> are registers.  <code>nn</code> is a number (aka an <em>immediate</em> number).  <code>a = b</code> is a programmer's way of writing: "The value of <code>a</code> <em>becomes</em> the value of <code>b</code>".  <code>Void = x</code> means the result of <code>x</code> is dropped, but still updates <code>cpsr</code>.  <code>x << y</code> means "Bitshift <code>x</code> to the left <code>y</code> times, dropping any bits that leave the register."  <code>x >> y</code> is the opposite. </p>
 
-<div id="ThumbInstructions">
+<div id="ThumbInstructions" class="txt14">
     <table>
         <th colspan="4"><b>Logical Operations</b></th>
         <tr><td><b>Instruction</b></td><td><b>Effect</b></td><td><b>Flags</b></td><td><b>Description</b></td></tr>
@@ -105,7 +105,7 @@
         <tr><td><code>B{cond} $addr</code></td><td><code>if cond = True: pc = addr + 2</code></td><td><code>----</code></td><td>Conditional Branch **</td></tr>
         <tr><td><code>BL $addr</code></td><td><code>lr = pc + 1; pc = addr + 2</code></td><td><code>----</code></td><td>Branch and Link ***</td></tr>
         <tr><td><code>BX Rx</code></td><td><code>pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch and Exchange ****</td></tr>
-        <tr><td><code>BLX Rx</code></td><td><code>lr = pc + 1; pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch Link and Exchange</td></tr>
+        <tr><td><code>BLX Rx</code></td><td><code style="white-space: pre-wrap;">lr = pc + 1; pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch Link and Exchange</td></tr>
         <tr><td><code>SWI nn</code></td><td><code>lr = pc-1; ARM SVC mode; pc = 8</code></td><td><code>----</code></td><td>Software Interrupt</td></tr>
         <tr><td><code>BKPT nn</code></td><td><code>???</code></td><td><code>----</code></td><td>Breakpoint</td></tr>
     </table>
@@ -214,7 +214,7 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000C
 <p>If we opened a disassembler and went to address <code>08000000</code> (the start of the ROM), we'd see:</p>
 <img src="Images/Disasm1.png">
 
-<p>Every instruction corresponds to some hex number, aka its <b>machine code</b>.  Computer chips are just logic circuits that can read those numbers, and execute the corresponding instructions.  The process of converting human-written code into machine code is called <b>compiling</b>.  The next lesson will demonstrate how to compile by hand.</p>
+<p>Every instruction corresponds to some hex number, its <b>machine code</b>.  Computer chips are just logic circuits that can read those numbers, and execute the corresponding instructions.  The process of converting human-written code into machine code is called <b>compiling</b>.  The next lesson will demonstrate how to compile by hand.</p>
 
 <p>All programs must be compiled to machine code before the CPU can run them.  Programming languages, such as ARM, C, Python, and Java are essentially just interfaces for machine code.  <b>Disassemblers</b> are programs that read machine code, and translate it into assembly code.  Any program can be disassembled, and if you can read assembly, then you can figure out what's going on.</p>
 
@@ -360,6 +360,8 @@ This function returns the 4-byte value at address $03000000 + 4*r0
 <h3 id="theprogramcounter">The Program Counter</h3>
 <p>The <b>program counter</b> (<code>pc</code>) is continuously fed into the ROM to determine which instruction to receive next.  Each time the CPU executes an instruction, it also increments the <code>pc</code>.  To jump to a different address in the ROM, it modifies the <code>pc</code> to reflect the desired address. This is done using <code>b</code>, <code>bl</code>, <code>bx</code>, or <code>blx</code> instructions.  It may also use conditional branch instructions, such as <code>beq</code>, or <code>bne</code>, which look at the Current Program Status Register to determine whether or not to branch at all.</p>
 
+<p><code>b $addr</code> is a <b>branch</b> command, which jumps to <code>$addr</code>.  <code>bl $addr</code> is <b>branch and <em>link</em></b> command, which links the <code>pc</code> in addition to branching.  <code>bx rn</code> is <b>branch and <em>exchange</em></b>, which branches to the address contained in <code>rn</code>, and can switch (exchange) between Thumb and Arm mode, based on whether <code>rn</code> was odd or even.  <code>blx</code> is <b>branch, link, and exchange</b>, which links <code>pc</code>, in addition to performing a <code>bx</code> command.</p>
+
 <p>In the early days of ARM, a decision was made to have the <code>pc</code> point two instructions ahead of the instruction it's currently executing, which at the time helped simplify the hardware design.  Instructions were executed in three phases: Fetch, Decode, and Execute.  It could fetch the next instruction while the CPU was busy decoding and executing the instructions that were fetched earlier.  The <code>pc</code> pointed at the next instruction to fetch.  For you and me, it only serves to cause headaches with off-by-one errors.</p>
 
 <code class="block"> r0: 00000000   r1: 00000000   r2: 00000000   r3: 00000000
@@ -378,17 +380,15 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 08000402
 
 <p>A few instructions are <em>PC-Relative</em>, meaning that their result depends on the value of the program counter at the moment they're executed.  Instructions that branch (besides <code>bx</code>) actually work by adding to or subtracting from the current value of the program counter.</p>
 
-<p><code>b $addr</code> is a <b>branch</b> command, which jumps to <code>$addr</code>.  <code>bl $addr</code> is <b>branch and <em>link</em></b> command, which links the <code>pc</code> in addition to branching.  <code>bx rn</code> is <b>branch and <em>exchange</em></b>, which branches to the address contained in <code>rn</code>, and can switch (exchange) between Thumb and Arm mode, based on whether <code>rn</code> was odd or even.  <code>blx</code> is <b>branch, link, and exchange</b>, which links <code>pc</code>, in addition to performing a <code>bx</code> command.</p>
-
 <p>Another important PC-Relative instruction is <code>ldr rn, [$addr]</code>, which grabs 4 bytes from <code>addr</code>, which is at some offset to the <code>pc</code>, and stores it in <code>rn</code>.  The data it grabs is often located right after the end of the function, immediately after the return instruction.  Data and Instructions are intermingled with each other in a ROM.  Sometimes, just telling the difference between them can be quite tricky.</p>
 <code class="block">This code snippet checks the value at address $08020004, stores it in r4, then branches there with 'bx r4'.
-08020000: 4C00      ldr r4, [$08020004] (=$12345678)    //the number in parentheses is the value at address $08020004
+08020000: 4C00      ldr r4, [$08020004] (=0x12345678)    //0x12345678 is the value at address $08020004
 08020002: 4720      bx r4
 08020004: 5678      strh r0, [r0, 0x0]
 08020006: 1234      lsr r1, r0, 0x0
 </code>
 
-<p>Underneath <code>bx r4</code>, you can see <code>5678</code> and <code>1234</code> on the left, next to the addresses.  When reading from <code>08020004</code>, those values combine to form <code>$12345678</code>.  The reason for the swapping of positions is explained in the "Endianness" section.</p>
+<p>Underneath <code>bx r4</code>, you can see <code>5678</code> and <code>1234</code> on the left, next to the addresses.  When reading from <code>08020004</code>, those values combine to form <code>0x12345678</code>.  The reason for the swapping of positions is explained in the <a href="#endianness">Endianness</a> section.</p>
 
 <br>
 
@@ -481,37 +481,28 @@ b $08001300     //otherwise it branches to $08001300
     <tr><td><code>RSB{cond}{s} Rx, Ry, Op2</code></td><td>Reverse Subtract: subtracts <code>Ry</code> from <code>Op2</code></td></tr>
     <tr><td><code>RSC{cond}{s} Rx, Ry, Op2</code></td><td>Reverse Subtract w/ Carry</td></tr>
     <tr><td> </td></tr>
-    <tr><td rowspan="2"><code>RRX{cond}{s} Rx, Ry</code></td><td>Rotate Right w/ Extend: Like <code>ROR Rx, Ry, 0x1</code></td></tr>
-    <tr><td>but includes the Carry Flag in the rotation</td></tr>
+    <tr><td><code>RRX{cond}{s} Rx, Ry</code></td><td>Rotate Right w/ Extend: Like <code>ROR Rx, Ry, 0x1</code>, but includes the Carry Flag in the rotation</td></tr>
     <tr><td> </td></tr>
     <tr><td><code>TEQ{cond} Rx, Op2</code></td><td>Test Exclusive Or: Like <code>TST</code> but uses bitwise <code>XOR</code></td></tr>
     <tr><td> </td></tr>
-    <tr><td rowspan="3"><code>UMULL{cond}{s} RdLo, RdHi, Rx, Ry</code></td><td>Unsigned Multiply Long: Multiplies Rx and Ry,</td></tr>
-    <tr><td>and stores the lower 32 bits in <code>RdLo</code>, and the </td></tr>
-    <tr><td>upper 32 bits in <code>RdHi</code></td></tr>
+    <tr><td><code>UMULL{cond}{s} RdLo, RdHi, Rx, Ry</code></td><td>Unsigned Multiply Long: Multiplies Rx and Ry, and stores the lower 32 bits in <code>RdLo</code>, and the upper 32 bits in <code>RdHi</code></td></tr>
     <tr><td><code>SMULL{cond}{s} RdLo, RdHi, Rx, Ry</code></td><td>Signed Multiply Long: The signed version of <code>UMULL</code></td></tr>
     <tr><td> </td></tr>
-    <tr><td rowspan="3"><code>LDRD{cond} Rx, $addr</code></td><td>Load DoubleWord: Loads a 64-bit integer from</td></tr>
-    <tr><td><code>$addr</code>, and stores the lower half in <code>Rx</code>, and</td></tr>
-    <tr><td>the upper half in <code>R(x+1)</code></td></tr>
+    <tr><td><code>LDRD{cond} Rx, $addr</code></td><td>Load DoubleWord: Loads a 64-bit integer from <code>$addr</code>, and stores the lower half in <code>Rx</code>, and the upper half in <code>R(x+1)</code></td></tr>
     <tr><td><code>STRD{cond} Rx, $addr</code></td><td>Store DoubleWord: The inverse of <code>LDRD</code></td></tr>
     <tr><td> </td></tr>
-    <tr><td rowspan="3"><code>STM{cond}{amod} Rx{!}, Rlist</code></td><td>Store Multiple: Store the registers in <code>Rlist</code> at</td></tr>
-    <tr><td>address <code>Rx</code>.  <code>amod</code> is an <em>addressing mode</em>*</td></tr>
-    <tr><td><code>!</code> is an optional <em>writeback</em>**</td></tr>
+    <tr><td><code>STM{cond}{amod} Rx{!}, Rlist</code></td><td>Store Multiple: Store the registers in address <code>Rx</code>.  <code>amod</code> is an <em>addressing mode</em>*.  <code>!</code> is an optional <em>writeback</em>**<code>Rlist</code> at</td></tr>
     <tr><td><code>LDM{cond}{amod} Rx{!}, Rlist</code></td><td>Load Multiple: The inverse of <code>STM</code></td></tr>
     <tr><td> </td></tr>
-    <tr><td rowspan="2"><code>MRS</code></td><td>Move Register to System Coprocessor Register:</td></tr>
-    <tr><td>Allows you to store a register in <code>cpsr</code></td></tr>
-    <tr><td rowspan="2"><code>MRS</code></td><td>Move System Coprocessor Register to Register:</td></tr>
-    <tr><td>Allows you to store <code>cpsr</code> in a register</td></tr>
+    <tr><td><code>MRS{cond} Rd, Psr</code></td><td>Move System Coprocessor Register to Register: Allows you to store <code>cpsr</code> in a register</td></tr>
+    <tr><td><code>MSR{cond} Psr[_field], Op2</code></td><td>Move Register to System Coprocessor Register: Allows you to store a flexible operand to the specified fields in <code>cpsr</code></td></tr>
 </table>
 <table class="footnote">
     <tr><td>* </td><td>There are four types of addressing modes:</td></tr>
     <tr><td></td><td>- <code>IB</code> Increment Before: Increments the target address <em>before</em> storing a register there</td></tr>
     <tr><td></td><td>- <code>IA</code> Increment After: Increments the target address <em>after</em> storing a register there</td></tr>
-    <tr><td></td><td>- <code>IB</code> Decrement Before: Decrements the target address <em>before</em> storing a register there</td></tr>
-    <tr><td></td><td>- <code>IA</code> Decrement After: Decrements the target address <em>after</em> storing a register there</td></tr>
+    <tr><td></td><td>- <code>DB</code> Decrement Before: Decrements the target address <em>before</em> storing a register there</td></tr>
+    <tr><td></td><td>- <code>DA</code> Decrement After: Decrements the target address <em>after</em> storing a register there</td></tr>
     <tr><td>** </td><td>If <em>writeback</em> is specified, then the register containing the address will be updated with the final position of the target address</td></tr>
     <tr><td>*** </td><td>Note that <code>stmdb sp!</code> is identical to <code>push</code>, and <code>ldmia sp!</code> is identical to <code>pop</code></td></tr>
     <tr><td>**** </td><td>This table is not a comprehensive list of ARM instructions.  It only contains what you're most likely to see.  Click for more information about <a href="https://www.akkit.org/info/gbatek.htm#thumbinstructionsummary" target="_blank">Thumb</a> and <a href="https://www.akkit.org/info/gbatek.htm#arminstructionsummary" target="_blank">ARM</a> instruction sets</td></tr>
@@ -519,7 +510,7 @@ b $08001300     //otherwise it branches to $08001300
 
 <h2 id="apowerfullanguage">A Powerful Language</h2>
 
-<p>Congratulations!  You've learned how to read assembly!  If you've read this far, you should be able to read the vast majority of Arm and Thumb instructions.  The applications of this extend well beyond debugging ARM reliant programs.  Most assembly languages have a strikingly similar program architecture.  When it's absolutely critical to have high-performance code, it is usually written in C or Assembly.  Higher level programming languages can never quite reach the same level of efficiency.  Programming languages of the future will be written in Assembly.</p>
+<p>If you've read this far, then armed with these tables, you should be able to read the vast majority of Arm and Thumb instructions.  The applications of this extend well beyond debugging ARM reliant programs.  Most assembly languages have a strikingly similar program architecture.  When it's absolutely critical to have high-performance code, it is usually written in C or Assembly.  Higher level programming languages can never quite reach the same level of efficiency.  Programming languages of the future will be written in Assembly.</p>
 
 <div class="centertxt">
     <div class="quote flex">

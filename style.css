@@ -27,6 +27,7 @@ header, footer {
     background-color: #111;
     color: white;
     height: 50px;
+    font-size: 1.3vw;
 }
 
 header div, footer div {
@@ -42,7 +43,6 @@ header a, footer a {
     color: white;
     text-decoration: none;
     padding: 10px;
-    font-size: 1.4vw;
 }
 
 header a:hover, footer a:hover {
@@ -111,9 +111,10 @@ td {
 
 code {
     font-family: monospace;
+    font-size: 1vw;
     background-color: rgb(234, 243, 242);
     padding: 2px 4px;
-    white-space: pre-wrap;
+    white-space: pre;
 }
 
 code.block {
@@ -122,6 +123,7 @@ code.block {
     border-radius: 5px;
     padding: 10px;
     line-height: 1.5em;
+    white-space: pre-wrap;
 }
 
 .quote {
@@ -142,9 +144,29 @@ code.block {
 }
 
 @media screen and (max-width: 1024px) {
-    #Main-Page {margin: 20px auto; padding: 20px; width: 75%}
+    #Main-Page {margin: 20px auto; padding: 20px; width: 75%; font-size: 1.4vw}
+    header, footer {font-size: 1.6vw}
+    th {font-size: 1.6vw}
+    .txt14 {font-size: 1.2vw}
+    table.footnote {font-size: 1vw}
+    .quote {font-size: 1.6vw}
 }
 
 @media screen and (max-width: 768px) {
-    #Main-Page {margin: 10px auto; padding: 10px; width: 85%}
+    #Main-Page {margin: 10px auto; padding: 10px; width: 85%; font-size: 1.6vw}
+    header, footer {font-size: 1.8vw}
+    th {font-size: 1.8vw}
+    .txt14 {font-size: 1.4vw}
+    table.footnote {font-size: 1.3vw}
+    .quote {font-size: 1.8vw}
+}
+
+@media screen and (max-width: 532px) {
+    #Main-Page {margin: 10px auto; padding: 10px; width: 95%; font-size: 2vw}
+    header, footer {font-size: 2.3vw}
+    th {font-size: 2.3vw}
+    .txt14 {font-size: 1.8vw}
+    table.footnote {font-size: 1.7vw}
+    .quote {font-size: 2.3vw}
+    p {margin: 20px}
 }
