@@ -16,21 +16,21 @@
         <span class="sep"></span>
         <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
         <span class="sep"></span>
-        <a href="The Thumb Assembly Language.html"><b>The Thumb Assembly Language</b></a>
+        <a href="ARM and Thumb.html"><b>ARM and Thumb</b></a>
     </div>
 </header>
 
 <div id="Main-Page">
 
-<h1>Logic Gates</h1>
+<h1 id="logicgates">Logic Gates</h1>
 
-<p>Logic gates are the building blocks of computers.  They are the atoms of our periodic table of elements.  All of the complexity and intelligence of computers stems from these basic components.</p>
+<p>Logic gates are the building blocks of computers.  They are the atoms of our periodic table of elements.  All of the complexity and intelligence of computers stem from these basic components.</p>
 
 <table>
     <tr><th style="text-align: center">Icon</th><th>Gate</th><th>Effect</th></tr>
     <tr><td><img src="Icons/NOT.png"></td><td>NOT</td><td>Outputs the opposite value of the input</td></tr>
     <tr><td><img src="Icons/AND.png"></td><td>AND</td><td>Outputs 1 if both inputs are 1, otherwise, outputs 0</td></tr>
-    <tr><td><img src="Icons/OR.png"></td><td>OR</td><td>Outputs 1 if either input is 1, otherwise, outputs 0</td></tr>
+    <tr><td><img src="Icons/OR.png"></td><td>OR</td><td>Outputs 1 if at least one of its inputs is 1, otherwise, outputs 0</td></tr>
     <tr><td><img src="Icons/XOR.png"></td><td>XOR</td><td>Outputs 1 if exactly one of its inputs are 1, otherwise, outputs 0</td></tr>
 </table>
 
@@ -44,13 +44,13 @@
     <tr><th style="text-align: center">Icon</th><th>Gate</th><th>Effect</th></tr>
     <tr><td><img src="Icons/Buffer.png"></td><td>Buffer</td><td>Outputs the same value as the input</td></tr>
     <tr><td><img src="Icons/NAND.png"></td><td>NAND</td><td>Outputs 0 if both inputs are 1, otherwise, outputs 1</td></tr>
-    <tr><td><img src="Icons/NOR.png"></td><td>NOR</td><td>Outputs 0 if either input is 1, otherwise, outputs 1</td></tr>
+    <tr><td><img src="Icons/NOR.png"></td><td>NOR</td><td>Outputs 0 if at least one of its inputs is 1, otherwise, outputs 1</td></tr>
     <tr><td><img src="Icons/XNOR.png"></td><td>XNOR</td><td>Outputs 0 if exactly one of its inputs are 1, otherwise, outputs 1</td></tr>
 </table>
 
-<p>These gates are logically identical to sticking a NOT gate at the end of each of the primary 4 gates (as indicated by the circle at the end of the icons).  NAND and NOR are special.  From either of those, you can actually construct all of the other logic gates.  In fact, there is a free online course in which you build an entire computer from nothing but NAND gates.  It's called Nand to Tetris, and I highly recommend it.</p>
+<p>These gates are logically identical to sticking a NOT gate at the end of each of the primary 4 gates (as indicated by the circle at the end of the icons).  NAND and NOR are special.  From either of those, you can actually construct all of the other logic gates.  In fact, there is a free online course in which you build an entire computer from nothing but NAND gates.  It's called <a href="https://www.youtube.com/playlist?list=PLrDd_kMiAuNmSb-CKWQqq9oBFN_KNMTaI" target="_blank">Nand to Tetris</a>, and I highly recommend it.</p>
 
-<h2>Truth Tables</h2>
+<h2 id="truthtables">Truth Tables</h2>
 
 <p>You can think of computers and logic gates as input/output devices.  To learn how to combine the basic components to build complex ones, we'll need to use Truth Tables.</p>
 
@@ -87,7 +87,7 @@
     </table>
 </div>
 
-<p>Truth Tables are comprehensive lists of outputs for each possible input.  "A OR B" for example has two inputs: <code>A</code> and <code>B</code>, and one output: <code>Out</code>.  With logic gate notation, <code>NOT</code>, <code>AND</code>, <code>OR</code>, and <code>XOR</code> are like arithmetic operations.  To evaluate the output, evaluate anything inside of parentheses first.  Without parentheses, logic gates are evaluated in the order: <code>NOT > AND > OR/XOR</code>.</p>
+<p>Truth Tables are comprehensive lists of outputs for every possible input.  "A OR B" for example has two inputs: <code>A</code> and <code>B</code>, and one output: <code>Out</code>.  With logic gate notation, <code>NOT</code>, <code>AND</code>, <code>OR</code>, and <code>XOR</code> are like arithmetic operations.  To evaluate the output, evaluate anything inside of parentheses first.  Without parentheses, logic gates are evaluated in the order: <code>NOT > AND > OR/XOR</code>.</p>
 
 <span>Example 1: <code>NOT(0 OR (1 AND 1))</code></span>
 <code class="block">NOT(0 OR (1 AND 1))     // (1 AND 1) --> 1
@@ -143,44 +143,37 @@ NOT(1)                  // NOT(1) --> 0
     </table>
 </div>
 
-<h2>Boolean Expressions</h2>
+<h2 id="booleanexpressions">Boolean Expressions</h2>
 
 <p>Truth Tables allow us to compare any two logic gate expressions (aka Boolean Expressions).  If two expressions result in the same truth table, then the expressions are equivalent.  You can exchange one for the other without impacting the output.  That may however affect the efficiency.  Each logic gate takes some small amount of time to produce a stable output, and uses some energy, so fewer gates = faster calculation and less heat.</p>
 
 <p>Evaluating boolean expressions might seem a bit contrived... until you realize that there is a way to convert <em>any</em> truth table into a boolean expression.  It turns out that there is an easy, systematic way to generate any table of outputs you desire, given unlimited logic gates to work with.  Here's how:</p>
 
 <ol>
-    <li>For each 1 in the <code>Out</code> column, write an expression that requires the exact inputs of that row</li>
-    <li>Connect all those expressions together with OR gates</li>
+    <li>For each 1 in the <code>Out</code> column, write an expression that <em>requires</em> the exact inputs of that row</li>
+    <li>Connect all of those expressions together with OR</li>
     <li>Simplify</li>
 </ol>
 
 <span>Example:</span>
 
-<table class="center centertxt">
-    <tr><th colspan="4">?</th></tr>
-    <tr><td><b>A</b></td><td><b>B</b></td><td><b>C</b></td><td><b>Out</b></td></tr>
-    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
-    <tr><td>0</td><td>1</td><td>0</td><td>1</td><td style="text-align: left"><code>NOT(A) AND B AND NOT(C)</code></td></tr>
-    <tr><td>0</td><td>1</td><td>1</td><td>1</td><td style="text-align: left"><code>NOT(A) AND B AND C</code></td></tr>
-    <tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td>1</td><td>0</td><td>1</td><td>1</td><td style="text-align: left"><code>A AND NOT(B) AND C</code></td></tr>
-    <tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
-    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td style="text-align: left"><code>A AND B AND C</code></td></tr>
-</table>
+<img src="Images/Figure 2-1.png">
 
 <br>
 <span>OR all of the expressions together:</span>
-<code class="block">(NOT(A) AND B AND NOT(C)) OR (NOT(A) AND B AND C) OR (A AND NOT(B) AND C) OR (A AND B AND C)</code>
+<code class="block">NOT(A) AND B AND NOT(C)   <b>OR</b>   NOT(A) AND B AND C   <b>OR</b>   A AND NOT(B) AND C   <b>OR</b>   A AND B AND C</code>
 <span>Simplify:</span>
 <code class="block">(NOT(A) AND B) OR (A AND NOT(B) AND C) OR (A AND B AND C)
 (NOT(A) AND B) OR (A AND C)</code>
+<span>If you create a truth table using that final expression, you should get the same truth table as the original.</span>
 
-<p>The simplification step can be tricky.  In this case, I used the fact that <code>(X AND Y) OR (X AND NOT(Y))</code> always equals <code>X</code>.  If you create a truth table using that final expression, you should get the same truth table as the original.</p>
+<p>The simplification step can be tricky.  In fact, there is <em>no known algorithm</em> that can do that perfectly and efficiently.  Generally, simplification is done by applying common simplification patterns.  In this case, I used the fact that <code>(X AND Y) OR (X AND NOT(Y))</code> always equals <code>X</code>.</p>
 
-<p>There are several common, useful tricks for simplifying boolean expressions.  Some may seem obvious, others not so much.</p>
+<p>There are several common and useful tricks for simplifying boolean expressions.  Some may seem obvious, others not so much.</p>
 <table>
+    <tr><td rowspan="2">Idempotence</td><td><code>x OR x = x</code></td></tr>
+    <tr><td><code>x AND x = x</code></td></tr>
+    <tr><td> </td></tr>
     <tr><td>Tautology</td><td><code>x OR NOT(x) = 1</code></td></tr>
     <tr><td>Contradiction</td><td><code>x AND NOT(x) = 0</code></td></tr>
     <tr><td> </td></tr>
@@ -202,7 +195,7 @@ NOT(1)                  // NOT(1) --> 0
 <p>For example, take DeMorgan's second law: <code>NOT(x OR y) = NOT(x) AND NOT(y)</code>.  The trick to this one is to ask the right question: When is <code>x OR y</code> 0?  Answer: when both x <b><em>and</em></b> y are 0.  Rephrasing, <code>x OR y</code> is 0 when <code>x</code> is 0 and <code>y</code> is 0, or in other words, <code>NOT(x OR y)</code> is 1 when <code>NOT(x) AND NOT(y)</code> is 1.  I'd recommend also trying to reason through DeMorgan's first law, and the Distributive Laws for practice.</p>
 
 
-<h2>Real World Implementation</h2>
+<h2 id="realworldimplementation">Real World Implementation</h2>
 
 <p>Designing an actual computer requires you to create combinations of logic gates to produce specific truth tables.  A combination of logic gates that serves a particular purpose is called a <b>chip</b>.  (For programmers, it's like a function.)  The design process has you begin with the basic gates, using them to build basic chips.  These chips then get combined into higher level chips.  The chips are like mathematical operations.  You build upon the operations you've already created to create more features and operations you can use.  Eventually, you're left with one super-chip, called a CPU, which has the power to execute machine code instructions (which are just 1s and 0s), and modify memory.  Often times, it may be clear what you <em>want</em> each chip to do, but it's up to you to figure out how to actually <em>compose</em> that behavior from logic gates.  This entire process is done using Hardware Description Language, or HDL.</p>
 
@@ -212,13 +205,13 @@ The <b>Multiplexer</b> takes three Inputs: <code>A</code>, <code>B</code>, and <
 
 <p>The <b>1-bit register</b> is a clever logic circuit that can store a signal.  It is the smallest unit of memory.  To understand it, first consider this logic circuit: Two NOT gates feeding into each other.  We'll call them N1 and N2.</p>
 
-<img src="Images/Figure 2-1.png">
+<img src="Images/Figure 2-2.png">
     
 <p>Suppose N1's input is off.  Its output will be on, which is also N2's input, so N2's output is off.  That is a stable configuration, with the power sitting on one side of the circuit (in front of N1).  Now, suppose you momentarily supplied power to N1's input.  Its output turns off, which turns on N2's output.  Again it's a stable configuration, but the power is sitting behind N1.  This circuit is the key to memory.</p>
 
 <p>The 1-bit register is essentially that basic circuit, wrapped in several logic gates that allow you to load an input value into the circuit conditionally.  The ability to store data dramatically increases the possibilities of logic circuits.  With just this knowledge, someone could write a fully fledged game using nothing but logic gates (I don't recommend it).</p>
 
-<img src="Images/Figure 2-2.png">
+<img src="Images/Figure 2-3.png">
 
 <p>There is one more critical element to a computer: the <b>clock</b>.  The clock is simply an oscillator, alternating between low and high voltage at breakneck speed.  Its purpose is to synchronize all of the logic gates in the computer, giving them enough time to settle on a voltage before they are read from.  Only when the clock is high, can memory be modified.  After that, the clock goes low while the logic gates of the system settle on their next state, and the cycle continues.</p>
 
@@ -232,7 +225,7 @@ The <b>Multiplexer</b> takes three Inputs: <code>A</code>, <code>B</code>, and <
         <span class="sep"></span>
         <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
         <span class="sep"></span>
-        <a href="The Thumb Assembly Language.html"><b>The Thumb Assembly Language</b></a>
+        <a href="ARM and Thumb.html"><b>ARM and Thumb</b></a>
     </div>
 </footer>
 

@@ -17,19 +17,20 @@ body {
 
 .flex {
     flex-wrap: wrap;
-    text-align: center;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
 header, footer {
-    background-color: black;
+    background-color: #111;
     color: white;
     height: 50px;
 }
 
-header div, footer div {cursor: pointer}
+header div, footer div {
+    cursor: pointer;
+}
 
 .sep {
     width: 1px;
@@ -86,15 +87,13 @@ table {
     margin: 30px 10px;
 }
 
-table.txt14 {
-    font-size: 14px;
-}
-
 table.footnote {
     display: block;
     font-size: 12px;
 }
 
+
+.txt14 {font-size: 14px;}
 .center {margin: auto;}
 .centertxt {text-align: center;}
 
@@ -144,6 +143,6 @@ code.block {
     body {font-size: 12px}
     #Main-Page {margin: 20px auto; padding: 20px; width: 75%}
     th {font-size: 14px}
-    code {font-size: 11px}
     .quote {font-size: 14px}
+    .txt14 {font-size: 11px}
 }

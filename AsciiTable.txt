@@ -1,0 +1,36 @@
+ASCII (American Standard Code for Information Interchange)
+
+
+Dec  Binary  Hex  Character                  Dec  Binary  Hex  Char     Dec  Binary   Hex  Char     Dec   Binary   Hex  Char
+ 0       0    0   null                       32   100000  20            64   1000000  40    @        96   1100000  60    `
+ 1       1    1   start of header            33   100001  21    !       65   1000001  41    A        97   1100001  61    a
+ 2      10    2   start of text              34   100010  22    "       66   1000010  42    B        98   1100010  62    b
+ 3      11    3   end of text                35   100011  23    #       67   1000011  43    C        99   1100011  63    c
+ 4     100    4   end of transmission        36   100100  24    $       68   1000100  44    D       100   1100100  64    d
+ 5     101    5   enquire 5                  37   100101  25    %       69   1000101  45    E       101   1100101  65    e
+ 6     110    6   acknowledge                38   100110  26    &       70   1000110  46    F       102   1100110  66    f
+ 7     111    7   bell                       39   100111  27    '       71   1000111  47    G       103   1100111  67    g
+ 8    1000    8   backspace                  40   101000  28    (       72   1001000  48    H       104   1101000  68    h
+ 9    1001    9   horizontal tab             41   101001  29    )       73   1001001  49    I       105   1101001  69    i
+10    1010    A   linefeed                   42   101010  2A    *       74   1001010  4A    J       106   1101010  6A    j
+11    1011    B   vertical tab               43   101011  2B    +       75   1001011  4B    K       107   1101011  6B    k
+12    1100    C   form feed                  44   101100  2C    ,       76   1001100  4C    L       108   1101100  6C    l
+13    1101    D   carriage return            45   101101  2D    -       77   1001101  4D    M       109   1101101  6D    m
+14    1110    E   shift out                  46   101110  2E    .       78   1001110  4E    N       110   1101110  6E    n
+15    1111    F   shift in                   47   101111  2F    /       79   1001111  4F    O       111   1101111  6F    o
+16   10000   10   data link escape           48   110000  30    0       80   1010000  50    P       112   1110000  70    p
+17   10001   11   device control 1/Xon       49   110001  31    1       81   1010001  51    Q       113   1110001  71    q
+18   10010   12   device control 2           50   110010  32    2       82   1010010  52    R       114   1110010  72    r
+19   10011   13   device control 3/Xoff      51   110011  33    3       83   1010011  53    S       115   1110011  73    s
+20   10100   14   device control 4           52   110100  34    4       84   1010100  54    T       116   1110100  74    t
+21   10101   15   negative acknowledge       53   110101  35    5       85   1010101  55    U       117   1110101  75    u
+22   10110   16   synchronous idle           54   110110  36    6       86   1010110  56    V       118   1110110  76    v
+23   10111   17   end transmission block     55   110111  37    7       87   1010111  57    W       119   1110111  77    w
+24   11000   18   cancel                     56   111000  38    8       88   1011000  58    X       120   1111000  78    x
+25   11001   19   end of medium              57   111001  39    9       89   1011001  59    Y       121   1111001  79    y
+26   11010   1A   end of file/substitute     58   111010  3A    :       90   1011010  5A    Z       122   1111010  7A    z
+27   11011   1B   escape                     59   111011  3B    ;       91   1011011  5B    [       123   1111011  7B    {
+28   11100   1C   file separator             60   111100  3C    <       92   1011100  5C    \       124   1111100  7C    |
+29   11101   1D   group separator            61   111101  3D    =       93   1011101  5D    ]       125   1111101  7D    }
+30   11110   1E   record separator           62   111110  3E    >       94   1011110  5E    ^       126   1111110  7E    ~
+31   11111   1F   unit separator             63   111111  3F    ?       95   1011111  5F    _       127   1111111  7F    DEL

@@ -16,16 +16,16 @@
         <span class="sep"></span>
         <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
         <span class="sep"></span>
-        <a href="The Thumb Assembly Language.html"><b>The Thumb Assembly Language</b></a>
+        <a href="ARM and Thumb.html"><b>ARM and Thumb</b></a>
     </div>
 </header>
 
 <div id="Main-Page">
-<h1>Intro to Binary</h1>
+<h1 id="introtobinary">Intro to Binary</h1>
 
 <p>The total number of unique symbols we need to encode all of the information known to mankind, is 2.  In 1689, the renowned mathematician and philosopher Gottfried Leibniz invented binary.  In his article, he outlined the rules of binary arithmetic.  Fast forward 200 years.  With the rise of the era of electricity, came the realization that by flipping electrical switches on and off, one could express the entirety of binary logic and arithmetic, and therefore, compute anything.</p>
 
-<p>Binary is a counting system, containing only two symbols: <code>0</code> and <code>1</code>.  Decimal is another counting system, containing ten symbols: <code>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</code>.  A counting system with n symbols is called a "base n" counting system (binary is "base two", decimal is "base ten").</p>
+<p>Binary is a counting system, containing only two symbols: <code>0</code> and <code>1</code>.  Decimal is another counting system, containing ten symbols: <code>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</code>.  A counting system with <em>n</em> symbols is called a "base <em>n</em>" counting system (binary is "base <em>two</em>", decimal is "base <em>ten</em>").</p>
 
 <p>To represent numbers larger than the largest symbol, we combine symbols.</p>
 
@@ -35,10 +35,10 @@
     <li>to increment the symbol 9, reset it to 0, then increment the symbol to its left</li>
 </ul>
 
-<p>Because of these rules, the symbol 10 in decimal represents ten groups of 1, 100 represents ten groups of 10, 1000 represents ten groups of 100, etc.  In general, any symbol <code>S</code> followed by <code>n</code> zeroes represents <code>S*(10^n)</code></p>
+<p>Because of these rules, the symbol 10 in decimal represents <em>ten</em> groups of 1, 100 represents <em>ten</em> groups of 10, 1000 represents <em>ten</em> groups of 100, etc.  In general, any symbol <code>S</code> followed by <code>n</code> zeroes represents <code>S*(10^n)</code></p>
 
 <p>In binary, we do exactly the same thing.  To increment the symbol 1, we reset it to 0, then increment the symbol to its left.
-In binary, the symbol 10 represents two groups of 1, 100 represents two groups of 10, 1000 represents two groups of 100, and so on.
+In binary, the symbol 10 represents <em>two</em> groups of 1, 100 represents <em>two</em> groups of 10, 1000 represents <em>two</em> groups of 100, and so on.
 
 To generalize: any symbol <code>S</code> followed by <code>n</code> zeroes reperesents <code>S*(2^n)</code>.</p>
 
@@ -64,6 +64,7 @@ To generalize: any symbol <code>S</code> followed by <code>n</code> zeroes reper
     1*(2^5) + 1*(2^4) + 0*(2^3) + 1*(2^2) + 0*(2^1) + 1*(2^0)   //Replace with the quantities they represent
       32   +    16   +     0    +    4    +    0    +    1      = 53</code>
 
+<p>so <code>110101</code> in binary is <code>53</code> in decimal.</p>
 <br>
 <span class="center"><span style="border-bottom: 1px solid lightgray">It will help to memorize powers of 2</span></span>
 <table class="center">
@@ -111,7 +112,7 @@ Result: 2^5 + 2^4 + 2^2 + 2^0 = 110101
 <p>So why is this useful?  With electricity, we can use a high voltage to represent 1, and a low voltage to represent 0.  By utilizing on and off switches, it is possible to combine those voltages in ways that exactly mimic all of binary arithmetic.  The ability to convert between binary and decimal bridges the gap between the computational capabilities of electrical circuits, and the math we learned in grade school.  With this knowledge, we can create machines to perform that math at the speed of light.  This series will cover exactly how that's done.</p>
 
 
-<h2>Other Bases</h2>
+<h2 id="otherbases">Other Bases</h2>
 
 <p>Hexadecimal is a counting system containing 16 symbols: <code>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F</code>
 
@@ -126,8 +127,8 @@ DA2F = 1101 1010 0010 1111
 </code>
 
 <br>
-<span>Explanation:</span>
-    <p style="margin: 0 0 30px 30px">In hexadecimal, any symbol <code>S</code> followed by <code>n</code> zeroes represents <code>S*(16^n)</code>.  <code>16^n</code> is the same as <code>2^(4n)</code>.  For this reason, appending a 0 to a hex number (increasing <code>n</code> by 1) is the same as appending four 0's to its binary form (each process multiplies the number by 16).  For example, <code>B</code> in hex is 1011 in binary, while <code>B0</code> in hex is 10110000 in binary.  To deduce the binary quantity of a hex number, we can again add up the quantities that each digit represents. In the example above, <code>DA2F</code>, we can think of it as <code>D000 + A00 + 20 + F</code>.  <code>D000</code> in binary would be 1101 0000 0000 0000, <code>A00</code> would be 1010 0000 0000, <code>20</code> would be 0010 0000, and <code>F</code> would be 1111.  Adding them up gives the same result as the example above.</p>
+<span>Why that works:</span>
+    <p style="margin: 0 0 30px 30px">In hexadecimal, any symbol <code>S</code> followed by <code>n</code> zeroes represents <code>S*(16^n)</code>.  <code>16^n</code> is the same as <code>2^(4n)</code>.  For this reason, appending a 0 to a hex number (increasing <code>n</code> by 1) is the same as appending four 0's to its binary form; <em>each process multiplies the number by 16</em>.  For example, <code>B</code> in hex is 1011 in binary, while <code>B0</code> in hex is 10110000 in binary.  To deduce the binary quantity of a hex number, we can again add up the quantities that each digit represents. In the example above, <code>DA2F</code>, we can think of it as <code>D000 + A00 + 20 + F</code>.  <code>D000</code> in binary would be 1101 0000 0000 0000, <code>A00</code> would be 1010 0000 0000, <code>20</code> would be 0010 0000, and <code>F</code> would be 1111.  Adding them up gives the same result as the example above.</p>
 
 <span class="center">It will also help to memorize the conversions for each hex digit
 (note that the first 10 are identical to the decimal conversions)</span>
@@ -135,14 +136,14 @@ DA2F = 1101 1010 0010 1111
 
 <table class="center centertxt">
     <tr><th>Hexadecimal</th><th>Binary</th></tr>
-    <tr><td>0</td><td>0</td></tr>
-    <tr><td>1</td><td>1</td></tr>
-    <tr><td>2</td><td>10</td></tr>
-    <tr><td>3</td><td>11</td></tr>
-    <tr><td>4</td><td>100</td></tr>
-    <tr><td>5</td><td>101</td></tr>
-    <tr><td>6</td><td>110</td></tr>
-    <tr><td>7</td><td>111</td></tr>
+    <tr><td>0</td><td>0000</td></tr>
+    <tr><td>1</td><td>0001</td></tr>
+    <tr><td>2</td><td>0010</td></tr>
+    <tr><td>3</td><td>0011</td></tr>
+    <tr><td>4</td><td>0100</td></tr>
+    <tr><td>5</td><td>0101</td></tr>
+    <tr><td>6</td><td>0110</td></tr>
+    <tr><td>7</td><td>0111</td></tr>
     <tr><td>8</td><td>1000</td></tr>
     <tr><td>9</td><td>1001</td></tr>
     <tr><td>A</td><td>1010</td></tr>
@@ -153,32 +154,35 @@ DA2F = 1101 1010 0010 1111
     <tr><td>F</td><td>1111</td></tr>
 </table>
 
+<p>Just like the other counting systems, to count past the last symbol, you reset it to zero, then increment the symbol to its left.  <code>...D, E, F, 10, 11, 12...</code>.  To avoid ambiguity, hexadecimal numbers are usually prefixed with "0x", which just means "the following number is hexadecimal".  <code>...0xD, 0xE, 0xF, 0x10, 0x11, 0x12...</code>.
+</p>
+
 <p>You may also encounter "octal", which is a base 8 counting system.  Similar to hexadecimal, it is easy to convert to and from binary, the only difference being that each octal digit is allocated 3 binary digits instead of 4.</p>
 
-<p>To avoid ambiguity, you may often see hexadecimal numbers prefixed with "0x".  For example, 0x11 is 17 in decimal.  Binary is sometimes preceded with "0b", and octal is sometimes preceded with "0o".</p>
 
+<h2 id="terminologyandusage">Terminology and Usage</h2>
 
-<h2>Terminology and Usage</h2>
-
-<p>A single digit in binary is called a <b>bit</b>.  Bits are often used to represent on/off, or true/false.  Bits are also used to represent integers, letters, and other symbols.  In modern computers, the smallest addressable units of memory, or <b>bytes</b>, each contain 8 bits.  With 8 bits, you can represent any number from 0 to 255 (00000000 to 11111111).  In a basic text document, English letters are represented with one byte each, using the <a>ASCII table</a>.</p>
+<p>A single digit in binary is called a <b>bit</b>.  Bits are often used to represent on/off, or true/false.  Bits are also used to represent integers, letters, and other symbols.  In modern computers, the smallest addressable units of memory, or <b>bytes</b>, each contain 8 bits.  With 8 bits, you can represent any number from 0 to 255 (00000000 to 11111111).  In a basic text document, English letters are represented with one byte each, translated using the <a href="AsciiTable.txt" target="_blank">ASCII table</a>.</p>
 
 <p>For any binary value, the least significant bit (<b>lsb</b>) is the rightmost bit, and the most significant bit (<b>msb</b>) is the leftmost bit.  To refer to a specific bit in a value, we number each bit from right to left, starting at 0.  The lsb is bit 0, the bit to the left of that is bit 1, left of that is bit 2, left of that is bit 3, etc.</p>
 
+<img src="Images/Figure 1-1.png">
+
 <p><b>Registers</b> are tiny containers of bits.  Bytes are typically contained within 8-bit registers.  Math done between registers is similar to math done with normal binary, except that any overflowed/underflowed bits are just dropped, swallowed by the void.</p>
 
-<p>For example, suppose you have an 8-bit register with the value 11001111.  To multiply it by 2, we shift each digit to the left: 110011110.  But in bit-shifting left, the number no longer fits within 8 bits, so the most significant bit (msb) is dropped, or "shifted out".  The result in the register is 10011110.  Similarly, if we divide by 2, we shift each digit to the right and the least significant bit (lsb) is shifted out.</p>
+<p>For example, suppose you have an 8-bit register with the value 11001111.  To multiply it by 2, we shift each digit to the left: 110011110.  But in bit-shifting left, the number no longer fits within 8 bits, so the most significant bit (msb) is dropped, or "shifted out".  What remains inside the register is 10011110.  Similarly, if we divide by 2, we shift each digit to the right and the least significant bit (lsb) is shifted out.  Any vacated bits are automatically filled with 0.</p>
 
-<img src="Images/Figure 1-1.png">
+<img src="Images/Figure 1-2.png">
 
 <p>This has an interesting side effect: 11111111 + 1 = 100000000, which becomes 0 because the msb doesn't fit inside the 8-bit register.  This effect is called "rolling over", meaning that the operation passed the max value, and landed on or crossed over 0.  Conveniently, this allows us to express negative numbers in registers.</p>
 
 
-<h2>Negative Numbers</h2>
+<h2 id="negativenumbers">Negative Numbers</h2>
 
 <p>The defining property of negative numbers is that when added to their positive counterparts, they result in 0
 
 <span class="center"><code>x + -x = 0</code></span>
-To express -1 in an 8-bit register, you would actually use 11111111, because when you add 1 to that, it rolls over to 0.  To express -1 in a larger register, you'd need to fill the whole register with 1s.  A useful shortcut for finding the negative of a number is to flip every bit, then add 1.</p>
+To express -1 in an 8-bit register, you would actually use 11111111, because when you add 1 to that, it rolls over to 0.  To express -1 in a larger register, you'd need to fill the whole register with 1s.  A useful shortcut for finding the negative of a number is to toggle every bit, then add 1.</p>
 
 <p>Why not just use a negative sign?  The negative sign is a symbol.  It's another form of information.  Remember, our register can only store information using 2 symbols, 0 and 1, aka low or high voltage.  While it is possible to use a separate register for each number to represent positive/negative, that method is far less efficient, and more difficult to hard-wire into a computer chip.
 
@@ -196,7 +200,7 @@ At the physical level, a 1-bit register is made up of an electrical circuit cont
         <span class="sep"></span>
         <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
         <span class="sep"></span>
-        <a href="The Thumb Assembly Language.html"><b>The Thumb Assembly Language</b></a>
+        <a href="ARM and Thumb.html"><b>ARM and Thumb</b></a>
     </div>
 </footer>
 
