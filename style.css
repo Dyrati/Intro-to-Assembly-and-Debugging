@@ -13,6 +13,7 @@ body {
     border: 1px solid lightgray;
     padding: 50px;
     box-shadow: 0 0 10px 0 gray;
+    font-size: 1.2vw;
 }
 
 .flex {
@@ -41,6 +42,7 @@ header a, footer a {
     color: white;
     text-decoration: none;
     padding: 10px;
+    font-size: 1.4vw;
 }
 
 header a:hover, footer a:hover {
@@ -89,16 +91,16 @@ table {
 
 table.footnote {
     display: block;
-    font-size: 12px;
+    font-size: 0.9vw;
 }
 
 
-.txt14 {font-size: 14px;}
+.txt14 {font-size: 1vw;}
 .center {margin: auto;}
 .centertxt {text-align: center;}
 
 th {
-    font-size: 18px;
+    font-size: 1.4vw;
     padding: 0 10px;
     border-bottom: 1px solid lightgray;
 }
@@ -124,7 +126,7 @@ code.block {
 
 .quote {
     font-family: "Constantia";
-    font-size: 18px;
+    font-size: 1.4vw;
     display: inline-block;
     margin: auto;
     background-color: rgb(234, 234, 234);
@@ -139,10 +141,10 @@ code.block {
     padding: 12px;
 }
 
-@media screen and (max-width: 1000px) {
-    body {font-size: 12px}
+@media screen and (max-width: 1024px) {
     #Main-Page {margin: 20px auto; padding: 20px; width: 75%}
-    th {font-size: 14px}
-    .quote {font-size: 14px}
-    .txt14 {font-size: 11px}
+}
+
+@media screen and (max-width: 768px) {
+    #Main-Page {margin: 10px auto; padding: 10px; width: 85%}
 }
