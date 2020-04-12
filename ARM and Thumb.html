@@ -44,18 +44,25 @@
 
 <h2 id="thethumbinstructionset">The Thumb Instruction Set</h2>
 
-<p>Below is the complete list of Thumb instructions.
+<p>Below is the complete list of Thumb instructions.  Click <a href="#examples">here</a> to skip to the explanations and examples.</p>
     
 <b>Key/Symbols</b>
-<code>Rx</code>, <code>Ry</code>, and <code>Rz</code> are registers.  <code>nn</code> is a number (aka an <em>immediate</em> number).  <code>a = b</code> is a programmer's way of writing: "The value of <code>a</code> <em>becomes</em> the value of <code>b</code>".  <code>Void = x</code> means the result of <code>x</code> is dropped, but still updates <code>cpsr</code>.  <code>x << y</code> means "Bitshift <code>x</code> to the left <code>y</code> times, dropping any bits that leave the register."  <code>x >> y</code> is the opposite. </p>
-
+<ul>
+    <li><code>Rx</code>, <code>Ry</code>, and <code>Rz</code> are registers.</li>
+    <li><code>nn</code> is a number (aka an <em>immediate</em> number)</li>
+    <li><code>a = b</code> is a programmer's way of writing: "The value of <code>a</code> <em>becomes</em> the value of <code>b</code>"</li>
+    <li><code>Void = x</code> means the result of <code>x</code> is dropped, but still updates <code>cpsr</code></li>
+    <li><code>x << y</code> means "Bitshift <code>x</code> to the left <code>y</code> times, dropping any bits that leave the register."  <code>x >> y</code> is the opposite</li>
+    <li>The <code>$</code> sign is interchangeable with <code>0x</code></li>
+</ul>
+   
 <div id="ThumbInstructions" class="txt14">
     <table>
         <th colspan="4"><b>Logical Operations</b></th>
         <tr><td><b>Instruction</b></td><td><b>Effect</b></td><td><b>Flags</b></td><td><b>Description</b></td></tr>
-        <tr><td><code>MOV Rx, nn</code></td><td><code>Rx = nn</code></td><td><code>NZ--</code></td><td>Move register</td></tr>
-        <tr><td><code>MOV Rx, Ry</code></td><td><code>Rx = Ry</code></td><td><code>NZ00</code></td><td>Move register</td></tr>
-        <tr><td><code>MVN Rx, Ry</code></td><td><code>Rx = NOT Ry</code></td><td><code>NZ--</code></td><td>Move NOT register</td></tr>
+        <tr><td><code>MOV Rx, nn</code></td><td><code>Rx = nn</code></td><td><code>NZ--</code></td><td>Move</td></tr>
+        <tr><td><code>MOV Rx, Ry</code></td><td><code>Rx = Ry</code></td><td><code>NZ00</code></td><td>Move</td></tr>
+        <tr><td><code>MVN Rx, Ry</code></td><td><code>Rx = NOT Ry</code></td><td><code>NZ--</code></td><td>Move NOT</td></tr>
         <tr><td><code>AND Rx, Ry</code></td><td><code>Rx = Rx AND Ry</code></td><td><code>NZ--</code></td><td>Bitwise AND</td></tr>
         <tr><td><code>TST Rx, Ry</code></td><td><code>Void = Rx AND Ry</code></td><td><code>NZ--</code></td><td>Test</td></tr>
         <tr><td><code>BIC Rx, Ry</code></td><td><code>Rx = Rx AND NOT Ry</code></td><td><code>NZ--</code></td><td>Bit Clear</td></tr>
@@ -104,7 +111,7 @@
         <tr><td><code>B $addr</code></td><td><code>pc = addr + 2</code></td><td><code>----</code></td><td>Branch to address *</td></tr>
         <tr><td><code>B{cond} $addr</code></td><td><code>if cond = True: pc = addr + 2</code></td><td><code>----</code></td><td>Conditional Branch **</td></tr>
         <tr><td><code>BL $addr</code></td><td><code>lr = pc + 1; pc = addr + 2</code></td><td><code>----</code></td><td>Branch and Link ***</td></tr>
-        <tr><td><code>BX Rx</code></td><td><code>pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch and Exchange ****</td></tr>
+        <tr><td><code>BX Rx</code></td><td><code style="white-space: pre-wrap;">pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch and Exchange ****</td></tr>
         <tr><td><code>BLX Rx</code></td><td><code style="white-space: pre-wrap;">lr = pc + 1; pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch Link and Exchange</td></tr>
         <tr><td><code>SWI nn</code></td><td><code>lr = pc-1; ARM SVC mode; pc = 8</code></td><td><code>----</code></td><td>Software Interrupt</td></tr>
         <tr><td><code>BKPT nn</code></td><td><code>???</code></td><td><code>----</code></td><td>Breakpoint</td></tr>
@@ -246,7 +253,7 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000C
 
 <p>The bottom of the stack is the <em>highest</em> address of the stack (03007F00 for users on the gameboy advance).  As the stack grows, it approaches lower addresses.  If it grows too large, it can interfere with important parts of memory.  This is called a <b>stack overflow</b>.  When data is popped off of the stack, it doesn't actually get deleted, all that happens is the stack pointer moves back down.  That leftover data can be overwritten if more items are pushed onto the stack.</p>
 
-<p>Push instructions of multiple registers store the registers in order, with the <em>highest</em> register at the <em>highest</em> address.  Subsequent pushes store registers on top of that.</p>
+<p>Push instructions of multiple registers (Rlists) store the registers in order, with the <em>highest</em> register at the <em>highest</em> address, and the <em>lowest</em> register at the <em>lowest</em> address.</p>
 
 <code class="block">Initial State
     
@@ -472,9 +479,9 @@ b $08001300     //otherwise it branches to $08001300
 
 <p>Several parts of this instruction are optional.  Instructions may be unconditional, in which case the <b>condition</b> field is omitted.  The <b>send to flags</b> field may be omitted.  If the <b>source register</b> is omitted, then <b>operand 2</b> is added directly to the <b>destination register</b>.</p>
 
-<p>The <b>command</b> field can be any of the Logical or Arithmetic Thumb commands, such as <code>add</code>, <code>sub</code>, <code>neg</code>, and <code>cmp</code>.  Many of these commands require some fields to be omitted.</p>
+<p>The <b>command</b> field can be any of the Logical or Arithmetic Thumb commands, such as <code>add</code>, <code>sub</code>, <code>neg</code>, and <code>cmp</code>.  Many of these commands require some fields to be omitted.  Some disassemblers will swap the position of the <b>send to flags</b> field and the <b>condition</b> field.</p>
 
-<p>Branching commands (<code>b, bl, bx, blx</code>) have the same format and meaning as they do in Thumb.  Load/Store is basically the same, although it also lets you use the conditional field, and a flexible operand for the offsets of addresses.  Most commands have larger accepted ranges of inputs in Arm mode.</p>
+<p>Branching commands (<code>b, bl, bx, blx</code>) have the same format and meaning in ARM as they do in Thumb.  Load/Store is basically the same, although it additionally lets you use the conditional field, and a flexible operand for the offsets of addresses.  Most commands have larger accepted ranges of inputs in Arm mode.</p>
 
 <p>The Arm instruction set also includes a handful of new instructions:</p>
 <table class="txt14">
@@ -491,11 +498,11 @@ b $08001300     //otherwise it branches to $08001300
     <tr><td><code>LDRD{cond} Rx, $addr</code></td><td>Load DoubleWord: Loads a 64-bit integer from <code>$addr</code>, and stores the lower half in <code>Rx</code>, and the upper half in <code>R(x+1)</code></td></tr>
     <tr><td><code>STRD{cond} Rx, $addr</code></td><td>Store DoubleWord: The inverse of <code>LDRD</code></td></tr>
     <tr><td> </td></tr>
-    <tr><td><code>STM{cond}{amod} Rx{!}, Rlist</code></td><td>Store Multiple: Store the registers in address <code>Rx</code>.  <code>amod</code> is an <em>addressing mode</em>*.  <code>!</code> is an optional <em>writeback</em>**<code>Rlist</code> at</td></tr>
+    <tr><td><code>STM{cond}{amod} Rx{!}, Rlist</code></td><td>Store Multiple: Store <code>Rlist</code> at address <code>Rx</code>.  <code>amod</code> is an <em>addressing mode</em>*.  <code>!</code> is an optional <em>writeback</em>**</td></tr>
     <tr><td><code>LDM{cond}{amod} Rx{!}, Rlist</code></td><td>Load Multiple: The inverse of <code>STM</code></td></tr>
     <tr><td> </td></tr>
     <tr><td><code>MRS{cond} Rd, Psr</code></td><td>Move System Coprocessor Register to Register: Allows you to store <code>cpsr</code> in a register</td></tr>
-    <tr><td><code>MSR{cond} Psr[_field], Op2</code></td><td>Move Register to System Coprocessor Register: Allows you to store a flexible operand to the specified fields in <code>cpsr</code></td></tr>
+    <tr><td><code>MSR{cond} Psr[_field], Op2</code></td><td>Move Register to System Coprocessor Register: Allows you to store a flexible operand to the specified fields in <code>cpsr</code>.  The fields are <b>f</b>, <b>s</b>, <b>x</b>, <b>c</b>, and determine which regions of <code>cpsr</code> are modified.</td></tr>
 </table>
 <table class="footnote">
     <tr><td>* </td><td>There are four types of addressing modes:</td></tr>

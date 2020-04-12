@@ -87,7 +87,7 @@
     </table>
 </div>
 
-<p>Truth Tables are comprehensive lists of outputs for every possible input.  "A OR B" for example has two inputs: <code>A</code> and <code>B</code>, and one output: <code>Out</code>.  With logic gate notation, <code>NOT</code>, <code>AND</code>, <code>OR</code>, and <code>XOR</code> are like arithmetic operations.  To evaluate the output, evaluate anything inside of parentheses first.  Without parentheses, logic gates are evaluated in the order: <code>NOT > AND > OR/XOR</code>.</p>
+<p>Truth Tables are comprehensive lists of outputs for every possible input.  <code>A OR B</code> is an example of a truth table with two inputs: <code>A</code> and <code>B</code>, and one output: <code>Out</code>.  With logic gate notation, <code>NOT</code>, <code>AND</code>, <code>OR</code>, and <code>XOR</code> are like arithmetic operations.  To evaluate the output, evaluate anything inside of parentheses first.  Without parentheses, logic gates are evaluated in the order: <code>NOT > AND > OR/XOR</code>.</p>
 
 <span>Example 1: <code>NOT(0 OR (1 AND 1))</code></span>
 <code class="block">NOT(0 OR (1 AND 1))     // (1 AND 1) --> 1
@@ -143,6 +143,12 @@ NOT(1)                  // NOT(1) --> 0
     </table>
 </div>
 
+
+<p>A <b>Bitwise Operation</b> takes two numbers as inputs, and performs a logical operation between each of their corresponding bits to produce an output.</p>
+
+<img src="Images/Figure 2-1.png">
+
+
 <h2 id="booleanexpressions">Boolean Expressions</h2>
 
 <p>Truth Tables allow us to compare any two logic gate expressions (aka Boolean Expressions).  If two expressions result in the same truth table, then the expressions are equivalent.  You can exchange one for the other without impacting the output.  That may however affect the efficiency.  Each logic gate takes some small amount of time to produce a stable output, and uses some energy, so fewer gates = faster calculation and less heat.</p>
@@ -159,7 +165,7 @@ NOT(1)                  // NOT(1) --> 0
 
 <span>Example:</span>
 
-<img src="Images/Figure 2-1.png">
+<img src="Images/Figure 2-2.png">
 
 <br>
 <span>OR all of the expressions together:</span>
@@ -194,7 +200,7 @@ NOT(1)                  // NOT(1) --> 0
 
 <p>You don't have to memorize these laws.  It's far more effective to try to reason <em>why</em> the stuff on the left of each equals sign <em>implies</em> the stuff on the right.</p>
 
-<p>For example, take DeMorgan's second law: <code>NOT(x OR y) = NOT(x) AND NOT(y)</code>.  The trick to this one is to ask the right question: When is <code>x OR y</code> 0?  Answer: when both x <b><em>and</em></b> y are 0.  Rephrasing, <code>x OR y</code> is 0 when <code>x</code> is 0 and <code>y</code> is 0, or in other words, <code>NOT(x OR y)</code> is 1 when <code>NOT(x) AND NOT(y)</code> is 1.  I'd recommend also trying to reason through DeMorgan's first law, and the Distributive Laws for practice.</p>
+<p>For example, take DeMorgan's second law: <code>NOT(x OR y) = NOT(x) AND NOT(y)</code>.  The trick to this one is to ask the right question: When is <code>x OR y</code> 0?  Answer: when both x <b><em>and</em></b> y are 0.  In other words, <code>NOT(x OR y)</code> is 1 when <code>NOT(x) AND NOT(y)</code> is 1.  I'd recommend also trying to reason through DeMorgan's first law, and the Distributive Laws for practice.</p>
 
 
 <h2 id="realworldimplementation">Real World Implementation</h2>
@@ -207,13 +213,13 @@ The <b>Multiplexer</b> takes three Inputs: <code>A</code>, <code>B</code>, and <
 
 <p>The <b>1-bit register</b> is a clever logic circuit that can store a signal.  It is the smallest unit of memory.  To understand it, first consider this logic circuit: Two NOT gates feeding into each other.  We'll call them N1 and N2.</p>
 
-<img src="Images/Figure 2-2.png">
+<img src="Images/Figure 2-3.png">
     
 <p>Suppose N1's input is off.  Its output will be on, which is also N2's input, so N2's output is off.  That is a stable configuration, with the power sitting on one side of the circuit (in front of N1).  Now, suppose you momentarily supplied power to N1's input.  Its output turns off, which turns on N2's output.  Again it's a stable configuration, but the power is sitting behind N1.  This circuit is the key to memory.</p>
 
 <p>The 1-bit register is essentially that basic circuit, wrapped in several logic gates that allow you to load an input value into the circuit conditionally.  The ability to store data dramatically increases the possibilities of logic circuits.  With just this knowledge, someone could write a fully fledged game using nothing but logic gates (I don't recommend it).</p>
 
-<img src="Images/Figure 2-3.png">
+<img src="Images/Figure 2-4.png">
 
 <p>There is one more critical element to a computer: the <b>clock</b>.  The clock is simply an oscillator, alternating between low and high voltage at breakneck speed.  Its purpose is to synchronize all of the logic gates in the computer, giving them enough time to settle on a voltage before they are read from.  Only when the clock is high, can memory be modified.  After that, the clock goes low while the logic gates of the system settle on their next state, and the cycle continues.</p>
 

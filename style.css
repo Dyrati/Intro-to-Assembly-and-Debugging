@@ -150,6 +150,7 @@ code.block {
     .txt14 {font-size: 1.2vw}
     table.footnote {font-size: 1vw}
     .quote {font-size: 1.6vw}
+    code {font-size: 1.2vw}
 }
 
 @media screen and (max-width: 768px) {
@@ -159,14 +160,16 @@ code.block {
     .txt14 {font-size: 1.4vw}
     table.footnote {font-size: 1.3vw}
     .quote {font-size: 1.8vw}
+    code {font-size: 1.4vw}
 }
 
-@media screen and (max-width: 532px) {
-    #Main-Page {margin: 10px auto; padding: 10px; width: 95%; font-size: 2vw}
-    header, footer {font-size: 2.3vw}
-    th {font-size: 2.3vw}
-    .txt14 {font-size: 1.8vw}
-    table.footnote {font-size: 1.7vw}
-    .quote {font-size: 2.3vw}
+@media screen and (max-width: 600px) {
+    #Main-Page {margin: 10px auto; padding: 10px; width: 95%; font-size: 2.4vw}
+    header, footer {font-size: 2.2vw}
+    th {font-size: 2.4vw}
+    .txt14 {font-size: 2.2vw}
+    table.footnote {font-size: 2.1vw}
+    .quote {font-size: 2.6vw}
+    code {font-size: 2.1vw}
     p {margin: 20px}
 }
