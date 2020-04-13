@@ -173,3 +173,22 @@ code.block {
     code {font-size: 2.1vw}
     p {margin: 20px}
 }
+
+@page {
+    size: 8.5in 11in;
+    margin: 2cm;
+}
+
+@media print {
+    header, footer {display: none;}
+    header.flex, footer.flex {display: none;}
+    body {margin: 0px; background-image: none;}
+    #Main-Page {
+        margin: 0px;
+        width: 100%;
+        border: none;
+        padding: 0px;
+        box-shadow: none;
+    }
+    code {font-weight: bold;}
+}
