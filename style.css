@@ -13,7 +13,7 @@ body {
     border: 1px solid lightgray;
     padding: 50px;
     box-shadow: 0 0 10px 0 gray;
-    font-size: 1.2vw;
+    font-size: 16px;
 }
 
 .flex {
@@ -27,7 +27,7 @@ header, footer {
     background-color: #111;
     color: white;
     height: 50px;
-    font-size: 1.3vw;
+    font-size: 18px;
 }
 
 header div, footer div {
@@ -91,16 +91,16 @@ table {
 
 table.footnote {
     display: block;
-    font-size: 0.9vw;
+    font-size: 12px;
 }
 
 
-.txt14 {font-size: 1vw;}
+.txt14 {font-size: 14px;}
 .center {margin: auto;}
 .centertxt {text-align: center;}
 
 th {
-    font-size: 1.4vw;
+    font-size: 18px;
     padding: 0 10px;
     border-bottom: 1px solid lightgray;
 }
@@ -111,7 +111,7 @@ td {
 
 code {
     font-family: monospace;
-    font-size: 1vw;
+    font-size: 14px;
     background-color: rgb(234, 243, 242);
     padding: 2px 4px;
     white-space: pre;
@@ -128,7 +128,7 @@ code.block {
 
 .quote {
     font-family: "Constantia";
-    font-size: 1.4vw;
+    font-size: 18px;
     display: inline-block;
     margin: auto;
     background-color: rgb(234, 234, 234);
