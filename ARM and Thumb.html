@@ -221,7 +221,11 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000C
 <p>If we opened a disassembler and went to address <code>08000000</code> (the start of the ROM), we'd see:</p>
 <img src="Images/Disasm1.png">
 
-<p>Every instruction corresponds to some hex number, its <b>machine code</b>.  Computer chips are just logic circuits that can read those numbers, and execute the corresponding instructions.  The process of converting human-written code into machine code is called <b>compiling</b>.  The next lesson will demonstrate how to compile by hand.</p>
+<p>Every instruction corresponds to some number, its <b>machine code</b>.  Fields of the instruction directly translate to <b>bit fields</b> of that machine code.</p>
+
+<img src="Images/BitFields.png">
+
+<p>Computer chips are just logic circuits that can read those bits, and execute the corresponding instructions.  Different commands have different values in those fields, and often have different sizes of fields.  The entire bit field specification of both Thumb and ARM is summarized in <a href="Tables/OpcodeFormats.txt" target="_blank">Opcode Tables</a>, from <a href="https://www.akkit.org/info/gbatek.htm#thumbinstructionsummary" target="_blank">GBATEK</a>.  The process of converting human-written code into machine code is called <b>compiling</b>.</p>
 
 <p>All programs must be compiled to machine code before the CPU can run them.  Programming languages, such as ARM, C, Python, and Java are essentially just interfaces for machine code.  <b>Disassemblers</b> are programs that read machine code, and translate it into assembly code.  Any program can be disassembled, and if you can read assembly, then you can figure out what's going on.</p>
 
@@ -314,7 +318,7 @@ r12: 00000000  r13: 03007EF0  r14: 00000000  r15: 08000008
 r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000A
 </code>
 
-<span>Note that since the stack is a <b>First-In-Last-Out</b> system, restoring values should be done in the opposite order that they were stored.</span>
+<span>Note that since the stack is a <b>Last-In-First-Out</b> system, restoring values should be done in the opposite order that they were stored.</span>
 <br><br>
 
 <h3 id="thelinkregister">The Link Register</h3>
