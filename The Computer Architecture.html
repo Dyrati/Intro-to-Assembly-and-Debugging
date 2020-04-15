@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Dyrati">
+    <meta name="description" content="A basic overview of computer architecture">
+    <meta name="keywords" content="Computer,Architecture,Tutorial,Guide,Assembly,ARM,Thumb,Romhacking,RISC">
     <title>The Computer Architecture</title>
     <link href=style.css type="text/css" rel="stylesheet">
 </head>
@@ -25,11 +28,11 @@
 
 <p>A general purpose computer consists of a Central Processing Unit (CPU), Memory Units, and Input/Output ports.</p>
 
-<img src="Images/Figure 3-1.png">
+<img src="Images/Figure 3-1.png" alt="General Purpose Computer Diagram">
 
 <p>Memory is anything that stores (or remembers) a state.  With electronics, it could be a disk filled with microscopic magnets (a hard disk), or a lattice of wires with fuses (PROM), or an array of floating gate transistors (a solid state drive), or a bank of logical circuits (RAM), or anything else that can both store a state, and output a signal based on that state.</p>
 
-<img src="Images/Figure 3-2.png">
+<img src="Images/Figure 3-2.png" alt="Types of Memory">
 
 <p>When input and output devices, like your keyboard, mouse, and monitor, are plugged in, their memory is assimilated into the computer's memory, which allows the computer to freely modify the memory of those devices, and/or respond to electrical signals from them.  By modifying specific bytes in your monitor's memory, it can change the color of pixels.  By reading the registers of your keyboard, it can see what keys you pressed, and modify its own memory based on your inputs.</p>
 
@@ -37,7 +40,7 @@
 
 <p>So how does the CPU modify memory?  The output signals of the CPU are connected to the inputs of other devices.  RAM (Random Access Memory) is a type of memory unit that has three inputs (an <code>address</code>, a <code>value</code>, and a <code>write bit</code>) and one output (a <code>value</code>).  Within the RAM, there are millions of tiny 8-bit registers, each containing one byte.  There are also millions of multiplexers used to select exactly one of those bytes based on the <code>address</code> input.  The RAM always outputs the value of the byte at the inputted <code>address</code>.  If the <code>write bit</code> is on, then it will overwrite that byte with the <code>value</code> input.  The CPU uses those inputs and outputs to read from/write to the RAM.</p>
 
-<img src="Images/Figure 3-3.png">
+<img src="Images/Figure 3-3.png" alt="Reading/Writing to RAM">
 
 <p>The moment a computer is powered on, the CPU receives an instruction from address 0 of the Instruction Memory (which is often read-only memory, or ROM).  ROM is very much like RAM, except that it only has one input (an <code>address</code>) and one output (a <code>value</code>).  The instruction causes the CPU to modify its own registers and outputs.  It could add one register to another, or subtract, multiply, or bitshift.  It could move one register to another, it could use logical operations on registers, it could store its registers in RAM, or it could load values from RAM into its registers.  In some cases, it could produce a pseudo-random number, or even encrypt data.  The possibilities are limited only by the types of instructions that were hard-wired into the CPU.  The instruction itself is made up of electrical signals, many of which flip tiny logical switches, and others which get stored in registers.</p>
 
@@ -48,7 +51,7 @@
 
 <p>A <b>computation</b> is any process that can be described by a set of unambiguous instructions.  In 1936, Alan Turing proved that the set of all things computable can be reduced to the capabilities of a very simple machine, a <b>Turing Machine</b>.  No deterministic mechanism can ever surpass the theoretical capabilities of a Turing machine, and conversely, <em>anything</em> that can emulate a Turing machine can perform any computation, given infinite time and memory.</p>
 
-<img src="Images/Figure 3-4.png">
+<img src="Images/Figure 3-4.png" alt="Turing Machine Diagram">
 
 <br>
 <div class="centertxt">

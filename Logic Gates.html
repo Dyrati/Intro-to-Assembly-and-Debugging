@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Dyrati">
+    <meta name="description" content="A basic overview of boolean logic">
+    <meta name="keywords" content="Logic,Gates,Boolean,Tutorial,Guide,Assembly,ARM,Thumb,Romhacking">
     <title>Logic Gates</title>
     <link href=style.css type="text/css" rel="stylesheet">
 </head>
@@ -28,10 +31,10 @@
 
 <table>
     <tr><th style="text-align: center">Icon</th><th>Gate</th><th>Effect</th></tr>
-    <tr><td><img src="Icons/NOT.png"></td><td>NOT</td><td>Outputs the opposite value of the input</td></tr>
-    <tr><td><img src="Icons/AND.png"></td><td>AND</td><td>Outputs 1 if both inputs are 1, otherwise, outputs 0</td></tr>
-    <tr><td><img src="Icons/OR.png"></td><td>OR</td><td>Outputs 1 if at least one of its inputs is 1, otherwise, outputs 0</td></tr>
-    <tr><td><img src="Icons/XOR.png"></td><td>XOR</td><td>Outputs 1 if exactly one of its inputs are 1, otherwise, outputs 0</td></tr>
+    <tr><td><img src="Icons/NOT.png" alt="NOT Gate"></td><td>NOT</td><td>Outputs the opposite value of the input</td></tr>
+    <tr><td><img src="Icons/AND.png" alt="AND Gate"></td><td>AND</td><td>Outputs 1 if both inputs are 1, otherwise, outputs 0</td></tr>
+    <tr><td><img src="Icons/OR.png" alt="OR Gate"></td><td>OR</td><td>Outputs 1 if at least one of its inputs is 1, otherwise, outputs 0</td></tr>
+    <tr><td><img src="Icons/XOR.png" alt="XOR Gate"></td><td>XOR</td><td>Outputs 1 if exactly one of its inputs are 1, otherwise, outputs 0</td></tr>
 </table>
 
 <p>If you can replicate these four gates with any system of inputs and outputs, you can use them to build an entire computer.  Each gate's output must always reflect the values of its inputs, and those outputs may be used as the inputs of other gates.  It doesn't necessarily have to use electrical signals.</p>
@@ -42,10 +45,10 @@
 
 <table>
     <tr><th style="text-align: center">Icon</th><th>Gate</th><th>Effect</th></tr>
-    <tr><td><img src="Icons/Buffer.png"></td><td>Buffer</td><td>Outputs the same value as the input</td></tr>
-    <tr><td><img src="Icons/NAND.png"></td><td>NAND</td><td>Outputs 0 if both inputs are 1, otherwise, outputs 1</td></tr>
-    <tr><td><img src="Icons/NOR.png"></td><td>NOR</td><td>Outputs 0 if at least one of its inputs is 1, otherwise, outputs 1</td></tr>
-    <tr><td><img src="Icons/XNOR.png"></td><td>XNOR</td><td>Outputs 0 if exactly one of its inputs are 1, otherwise, outputs 1</td></tr>
+    <tr><td><img src="Icons/Buffer.png" alt="Buffer Gate"></td><td>Buffer</td><td>Outputs the same value as the input</td></tr>
+    <tr><td><img src="Icons/NAND.png" alt="NAND Gate"></td><td>NAND</td><td>Outputs 0 if both inputs are 1, otherwise, outputs 1</td></tr>
+    <tr><td><img src="Icons/NOR.png" alt="NOR Gate"></td><td>NOR</td><td>Outputs 0 if at least one of its inputs is 1, otherwise, outputs 1</td></tr>
+    <tr><td><img src="Icons/XNOR.png" alt="XNOR Gate"></td><td>XNOR</td><td>Outputs 0 if exactly one of its inputs are 1, otherwise, outputs 1</td></tr>
 </table>
 
 <p>These gates are logically identical to sticking a NOT gate at the end of each of the primary 4 gates (as indicated by the circle at the end of the icons).  NAND and NOR are special.  From either of those, you can actually construct all of the other logic gates.  In fact, there is a free online course in which you build an entire computer from nothing but NAND gates.  It's called <a href="https://www.youtube.com/playlist?list=PLrDd_kMiAuNmSb-CKWQqq9oBFN_KNMTaI" target="_blank">Nand to Tetris</a>, and I highly recommend it.</p>
@@ -147,7 +150,7 @@ NOT(1)                  // NOT(1) --> 0
 <p>A <b>Bitwise Operation</b> takes two numbers as inputs, and performs a logical operation between each of their corresponding bits to produce an output.</p>
 
 <span>Example: <code>77 AND 43</code></span>
-<img src="Images/Figure 2-1.png">
+<img src="Images/Figure 2-1.png" alt="Bitwise AND operation">
 
 
 <h2 id="booleanexpressions">Boolean Expressions</h2>
@@ -166,7 +169,7 @@ NOT(1)                  // NOT(1) --> 0
 
 <span>Example:</span>
 
-<img src="Images/Figure 2-2.png">
+<img src="Images/Figure 2-2.png" alt="Unknown Truth Table">
 
 <br>
 <span>OR all of the expressions together:</span>
@@ -214,13 +217,13 @@ The <b>Multiplexer</b> takes three Inputs: <code>A</code>, <code>B</code>, and <
 
 <p>The <b>1-bit register</b> is a clever logic circuit that can store a signal.  It is the smallest unit of memory.  To understand it, first consider this logic circuit: Two NOT gates feeding into each other.  We'll call them N1 and N2.</p>
 
-<img src="Images/Figure 2-3.png">
+<img src="Images/Figure 2-3.png" alt="NOT Gate loop">
     
 <p>Suppose N1's input is off.  Its output will be on, which is also N2's input, so N2's output is off.  That is a stable configuration, with the power sitting on one side of the circuit (in front of N1).  Now, suppose you momentarily supplied power to N1's input.  Its output turns off, which turns on N2's output.  Again it's a stable configuration, but the power is sitting behind N1.  This circuit is the key to memory.</p>
 
 <p>The 1-bit register is essentially that basic circuit, wrapped in several logic gates that allow you to load an input value into the circuit conditionally.  The ability to store data dramatically increases the possibilities of logic circuits.  With just this knowledge, someone could write a fully fledged game using nothing but logic gates (I don't recommend it).</p>
 
-<img src="Images/Figure 2-4.png">
+<img src="Images/Figure 2-4.png" alt="1-bit Register">
 
 <p>There is one more critical element to a computer: the <b>clock</b>.  The clock is simply an oscillator, alternating between low and high voltage at breakneck speed.  Its purpose is to synchronize all of the logic gates in the computer, giving them enough time to settle on a voltage before they are read from.  Only when the clock is high, can memory be modified.  After that, the clock goes low while the logic gates of the system settle on their next state, and the cycle continues.</p>
 

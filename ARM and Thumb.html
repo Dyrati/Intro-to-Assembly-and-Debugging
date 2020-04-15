@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Dyrati">
+    <meta name="description" content="An overview of the ARM and Thumb assembly languages and program architecture">
+    <meta name="keywords" content="Computer,Architecture,Language,Tutorial,Guide,Assembly,ARM,Thumb,Romhacking">
     <title>ARM and Thumb</title>
     <link href="style.css" type="text/css" rel="stylesheet">
 </head>
@@ -28,7 +31,7 @@
 
 <h2 id="thephysicalstructure">The Physical Structure</h2>
 
-<img src="Images/Figure 4-1.png">
+<img src="Images/Figure 4-1.png" alt="Physical Computer Structure">
 
 
 <br>
@@ -105,14 +108,14 @@
         <tr><td>*</td><td><code>Cy</code> is the carry flag of <code>cpsr</code></td></tr>
     </table>
     <br>
-    <table class="txt14">
+    <table class="txt14" id="BranchAndCallTable">
         <th colspan="4"><b>Branches and Calls</b></th>
         <tr><td><b>Instruction</b></td><td><b>Effect</b></td><td><b>Flags</b></td><td><b>Description</b></td></tr>
         <tr><td><code>B $addr</code></td><td><code>pc = addr + 2</code></td><td><code>----</code></td><td>Branch to address *</td></tr>
         <tr><td><code>B{cond} $addr</code></td><td><code>if cond = True: pc = addr + 2</code></td><td><code>----</code></td><td>Conditional Branch **</td></tr>
         <tr><td><code>BL $addr</code></td><td><code>lr = pc + 1; pc = addr + 2</code></td><td><code>----</code></td><td>Branch and Link ***</td></tr>
-        <tr><td><code>BX Rx</code></td><td><code style="white-space: pre-wrap;">pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch and Exchange ****</td></tr>
-        <tr><td><code>BLX Rx</code></td><td><code style="white-space: pre-wrap;">lr = pc + 1; pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch Link and Exchange</td></tr>
+        <tr><td><code>BX Rx</code></td><td><code>pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch and Exchange ****</td></tr>
+        <tr><td><code>BLX Rx</code></td><td><code>lr = pc + 1; pc = (Rx AND NOT 1) + 2; mode = Rx AND 1</code></td><td><code>----</code></td><td>Branch Link and Exchange</td></tr>
         <tr><td><code>SWI nn</code></td><td><code>lr = pc-1; ARM SVC mode; pc = 8</code></td><td><code>----</code></td><td>Software Interrupt</td></tr>
         <tr><td><code>BKPT nn</code></td><td><code>???</code></td><td><code>----</code></td><td>Breakpoint</td></tr>
     </table>
@@ -216,14 +219,14 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000C
 </code>
 
 <p>If we open a memory viewer and went to address <code>03007F00</code>, we'd see:</p>
-<img src="Images/MemView1.png">
+<img src="Images/MemView1.png" alt="Memory View after instruction execution">
 
 <p>If we opened a disassembler and went to address <code>08000000</code> (the start of the ROM), we'd see:</p>
-<img src="Images/Disasm1.png">
+<img src="Images/Disasm1.png" alt="View of ROM instructions">
 
 <p>Every instruction corresponds to some number, its <b>machine code</b>.  Fields of the instruction directly translate to <b>bit fields</b> of that machine code.</p>
 
-<img src="Images/BitFields.png">
+<img src="Images/BitFields.png" alt="Thumb Opcode Fields">
 
 <p>Computer chips are just logic circuits that can read those bits, and execute the corresponding instructions.  Different commands have different values in those fields, and often have different sizes of fields.  The entire bit field specification of both Thumb and ARM is summarized in <a href="Tables/OpcodeFormats.txt" target="_blank">Opcode Tables</a>, from <a href="https://www.akkit.org/info/gbatek.htm#thumbinstructionsummary" target="_blank">GBATEK</a>.  The process of converting human-written code into machine code is called <b>compiling</b>.</p>
 
@@ -253,7 +256,7 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000C
 
 <p>The <b>stack pointer</b> (<code>sp</code>) contains an address that starts at the bottom of the stack.  As the stack grows and shrinks with <code>push</code> and <code>pop</code> instructions, <code>sp</code> keeps track of the address of the next available space.</p>
 
-<img src="Images/Figure 4-2.png">
+<img src="Images/Figure 4-2.png" alt="Stack Diagram">
 
 <p>The bottom of the stack is the <em>highest</em> address of the stack (03007F00 for users on the gameboy advance).  As the stack grows, it approaches lower addresses.  If it grows too large, it can interfere with important parts of memory.  This is called a <b>stack overflow</b>.  When data is popped off of the stack, it doesn't actually get deleted, all that happens is the stack pointer moves back down.  That leftover data can be overwritten if more items are pushed onto the stack.</p>
 
@@ -362,7 +365,7 @@ This function returns the 4-byte value at address $03000000 + 4*r0
 </code>
 
 <p>While functions don't necessarily need inputs and outputs to do things, it's often helpful to think of them as black boxes that accept inputs, and produce outputs.</p>
-<img src="Images/Figure 4-3.png">
+<img src="Images/Figure 4-3.png" alt="Function as a black box">
 
 <p>Inputs and outputs of functions are typically stored in <code>r0-r3</code>.  Functions are sometimes called in different ways too, like by moving a register directly into <code>lr</code> before branching, or by copying <code>pc</code> to a register before branching.</p>
 <br>
@@ -451,7 +454,7 @@ b $08001300     //otherwise it branches to $08001300
 
 <p>When loading a byte (8 bits) or halfword (16 bits) from memory, sometimes that data is supposed to represent a negative number.  If you loaded those bits directly into an empty register, suddenly that number would appear to be positive, because bit 31 is clear.  To handle that scenario, there are instructions to load <em>signed</em> bytes and halfwords: <code>ldsb</code> and <code>ldsh</code>.  These instructions fill the upper bits of the destination register with 1 after loading the data, if its uppermost bit was 1.</p>
 
-<img src="Images/Figure 4-4.png">
+<img src="Images/Figure 4-4.png" alt="Loading Signed vs Unsigned data">
 
 <p>Unsigned instructions don't do anything special to the values they work with.  They treat everything like a positive number.  The largest unsigned value is 0xFFFFFFFF.</p>
 
@@ -464,18 +467,18 @@ b $08001300     //otherwise it branches to $08001300
 
 <p><b>Little Endian</b> is the reverse: numbers are read starting from the little end.  The least significant byte gets sent to the lowest address.  This ordering is a bit simpler to implement in hardware, however it can make it confusing to read data in a memory viewer.</p>
 
-<img src="Images/Endianness.png">
+<img src="Images/Endianness.png" alt="Endianness Diagram">
 
 <p>Different systems and machines use different Endianness.  Network protocols typically use Big Endian, while most computer processors use Little Endian.  Most ARM implementations use Little Endian.  Memory viewers will usually swap the bytes around for you when switching between viewing individual bytes vs viewing 16-bit and 32-bit values.</p>
 
-<img src="Images/Figure 4-5.png">
+<img src="Images/Figure 4-5.png" alt="Memory view of different byte lengths in Little Endian">
 
 <br>
 
 <h2 id="thearmlanguage">The Arm Language</h2>
 <p>The Arm instruction set is essentially just compound Thumb instructions plus suffixes.  Here's an example:</p>
 
-<img src="Images/ArmInstruction.png">
+<img src="Images/ArmInstruction.png" alt="ARM instruction fields">
 
 <p>The instruction above performs an <code>and</code> operation between the <b>source register</b> and <b>operand 2</b>, then stores the result in the <b>destination register</b>.  However, it will only do that if the <b>condition</b> (<code>eq</code>) is satisfied in <code>cpsr</code>.  The <code>s</code> for <b>sending to flags</b> is optional.  If <code>s</code> is present, then the result of the operation will update <code>cpsr</code>.</p>
 

@@ -1,5 +1,5 @@
 body {
-    background-image: url(Images/Background.png);
+    background-image: url(Images/Background.webp);
     background-size: 100%;
     font-family: Segoe UI;
     margin: 0;
@@ -143,34 +143,26 @@ code.block {
     padding: 12px;
 }
 
+
 @media screen and (max-width: 1024px) {
-    #Main-Page {margin: 20px auto; padding: 20px; width: 75%; font-size: 1.4vw}
-    header, footer {font-size: 1.6vw}
-    th {font-size: 1.6vw}
-    .txt14 {font-size: 1.2vw}
-    table.footnote {font-size: 1vw}
-    .quote {font-size: 1.6vw}
-    code {font-size: 1.2vw}
+    #Main-Page {margin: 20px auto; padding: 20px; width: 75%;}
+    #BranchAndCallTable tr td code {white-space: pre-wrap}
 }
 
 @media screen and (max-width: 768px) {
-    #Main-Page {margin: 10px auto; padding: 10px; width: 85%; font-size: 1.6vw}
-    header, footer {font-size: 1.8vw}
-    th {font-size: 1.8vw}
-    .txt14 {font-size: 1.4vw}
-    table.footnote {font-size: 1.3vw}
-    .quote {font-size: 1.8vw}
-    code {font-size: 1.4vw}
+    #Main-Page {margin: 10px auto; padding: 10px; width: 85%;}
+    header, footer {font-size: 2.2vw}
+    .txt14 {font-size: 12px}
+    code {font-size: 12px}
 }
 
 @media screen and (max-width: 600px) {
-    #Main-Page {margin: 10px auto; padding: 10px; width: 95%; font-size: 2.4vw}
-    header, footer {font-size: 2.2vw}
-    th {font-size: 2.4vw}
+    #Main-Page {margin: 10px auto; padding: 10px; width: 95%; font-size: 12px}
     .txt14 {font-size: 2.2vw}
-    table.footnote {font-size: 2.1vw}
-    .quote {font-size: 2.6vw}
-    code {font-size: 2.1vw}
+    code {font-size: 2.2vw}
+    code.block {font-size: 10px}
+    table.footnote {font-size: 2.2vw}
+    .quote {font-size: 14px}
     p {margin: 20px}
 }
 

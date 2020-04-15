@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Dyrati">
+    <meta name="description" content="A basic introduction to Binary">
+    <meta name="keywords" content="Binary,Tutorial,Guide,Assembly,ARM,Thumb,Romhacking">
     <title>Intro to Binary</title>
     <link href=style.css type="text/css" rel="stylesheet">
 </head>
@@ -21,7 +24,12 @@
 </header>
 
 <div id="Main-Page">
-<h1 id="introtobinary">Intro to Binary</h1>
+
+<h1>Intro to Assembly and Debugging</h1>
+<p>The language of machines can be understood by anyone.  Sometimes, the only way to truly understand what your machine is doing, is to listen to that language.  Romhacking, reverse-engineering, optimized code, and glitch-hunting are just a handful of the uses of learning Assembly language.  By the end of this guide, you'll be able to read an Assembly language, and also have a solid grasp of the most fundamental inner workings of machines.</p>
+
+
+<h2 id="binary">Binary</h2>
 
 <p>The total number of unique symbols needed to encode all of the information known to mankind, is 2.  In 1689, the renowned mathematician and philosopher Gottfried Leibniz invented binary.  He outlined the rules of binary arithmetic.  200 years later, with the rise of the era of electricity, came the realization that the entirety of binary logic and arithmetic could be expressed by flipping electrical switches on and off.</p>
 
@@ -166,13 +174,13 @@ DA2F = 1101 1010 0010 1111
 
 <p>For any binary value, the least significant bit (<b>lsb</b>) is the rightmost bit, and the most significant bit (<b>msb</b>) is the leftmost bit.  To refer to a specific bit in a value, we number each bit from right to left, starting at 0.  The lsb is bit 0, the bit to the left of that is bit 1, left of that is bit 2, left of that is bit 3, etc.</p>
 
-<img src="Images/Figure 1-1.png">
+<img src="Images/Figure 1-1.png" alt="8-Bit Register bit labels">
 
 <p><b>Registers</b> are tiny containers of bits.  Bytes are typically contained within 8-bit registers.  Math done between registers is similar to math done with normal binary, except that any overflowed/underflowed bits are just dropped, swallowed by the void.</p>
 
 <p>For example, suppose you have an 8-bit register with the value 11001111.  To multiply it by 2, we shift each digit to the left: 110011110.  But in bit-shifting left, the number no longer fits within 8 bits, so the most significant bit (msb) is dropped, or "shifted out".  What remains inside the register is 10011110.  Similarly, if we divide by 2, we shift each digit to the right and the least significant bit (lsb) is shifted out.  Any vacated bits are automatically filled with 0.</p>
 
-<img src="Images/Figure 1-2.png">
+<img src="Images/Figure 1-2.png" alt="8-bit Register left-shift">
 
 <p>This has an interesting side effect: 11111111 + 1 = 100000000, which becomes 0 because the msb doesn't fit inside the 8-bit register.  This effect is called "rolling over", meaning that the operation passed the max value, and landed on or crossed over 0.  Conveniently, this allows us to express negative numbers in registers.</p>
 
