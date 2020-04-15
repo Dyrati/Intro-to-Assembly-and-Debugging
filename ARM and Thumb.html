@@ -13,11 +13,11 @@
 
 <header class="flex">
     <div>
-        <a href="index.html"><b>Intro to Binary</b></a>
+        <a href="index.html"><b>Binary</b></a>
         <span class="sep"></span>
         <a href="Logic Gates.html"><b>Logic Gates</b></a>
         <span class="sep"></span>
-        <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
+        <a href="Computer Architecture.html"><b>Computer Architecture</b></a>
         <span class="sep"></span>
         <a href="ARM and Thumb.html"><b>ARM and Thumb</b></a>
     </div>
@@ -126,7 +126,7 @@
         <tr><td>****</td><td>Branch and Exchange switches to either ARM or THUMB mode based on the last bit of the address branched to.  If the last bit is 0, it switches to ARM mode.  If it's 1, it switches to THUMB mode.</td></tr>
     </table>
     <br>
-    <table>
+    <table id="MemoryLoadStoreTable">
         <th colspan="4"><b>Memory Load/Store</b></th>
         <tr><td><b>Instruction</b></td><td><b>Effect</b></td><td><b>Flags</b></td><td><b>Description</b></td></tr>
         <tr><td><code>LDR Rx, [Ry, nn]</code></td><td><code>Rx = u32[Ry + nn]</code></td><td><code>----</code></td><td>Load Word</td></tr>
@@ -144,8 +144,8 @@
         <tr><td><code>STR Rx, [Ry, Rz]</code></td><td><code>[Ry + Rz] = Rx</code></td><td><code>----</code></td><td>Store Word</td></tr>
         <tr><td><code>STRB Rx, [Ry, nn]</code></td><td><code>[Ry + nn] = byte(Rx)</code></td><td><code>----</code></td><td>Store Byte</td></tr>
         <tr><td><code>STRB Rx, [Ry, Rz]</code></td><td><code>[Ry + Rz] = byte(Rx)</code></td><td><code>----</code></td><td>Store Byte</td></tr>
-        <tr><td><code>STRH Rx, [Ry, nn]</code></td><td><code>[Ry + nn] = halfword(Rx)</code></td><td><code>----</code></td><td>Store Halfword</td></tr>
-        <tr><td><code>STRH Rx, [Ry, Rz]</code></td><td><code>[Ry + Rz] = halfword(Rx)</code></td><td><code>----</code></td><td>Store Halfword</td></tr>
+        <tr><td><code>STRH Rx, [Ry, nn]</code></td><td><code style="white-space: pre-wrap">[Ry + nn] = halfword(Rx)</code></td><td><code>----</code></td><td>Store Halfword</td></tr>
+        <tr><td><code>STRH Rx, [Ry, Rz]</code></td><td><code style="white-space: pre-wrap">[Ry + Rz] = halfword(Rx)</code></td><td><code>----</code></td><td>Store Halfword</td></tr>
         <tr><td><code>STR Rx, [sp, nn]</code></td><td><code>[sp + nn] = Rx</code></td><td><code>----</code></td><td>Store SP-Relative</td></tr>
         <tr><td> </td></tr>
         <tr><td><code>PUSH {Rlist}</code></td><td><code>[*sp] = Rlist</code></td><td><code>----</code></td><td>Push onto stack</td></tr>
@@ -228,7 +228,7 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000C
 
 <img src="Images/BitFields.png" alt="Thumb Opcode Fields">
 
-<p>Computer chips are just logic circuits that can read those bits, and execute the corresponding instructions.  Different commands have different values in those fields, and often have different sizes of fields.  The entire bit field specification of both Thumb and ARM is summarized in <a href="Tables/OpcodeFormats.txt" target="_blank">Opcode Tables</a>, from <a href="https://www.akkit.org/info/gbatek.htm#thumbinstructionsummary" target="_blank">GBATEK</a>.  The process of converting human-written code into machine code is called <b>compiling</b>.</p>
+<p>Computer chips are just logic circuits that can read those bits, and execute the corresponding instructions.  Different commands have different values in those fields, and often have different sizes of fields.  The entire bit field specification of both Thumb and ARM is summarized in <a href="Tables/OpcodeFormats.txt" target="_blank">Opcode Tables</a>, from <a href="https://www.akkit.org/info/gbatek.htm#thumbinstructionsummary" target="_blank" rel="noopener">GBATEK</a>.  The process of converting human-written code into machine code is called <b>compiling</b>.</p>
 
 <p>All programs must be compiled to machine code before the CPU can run them.  Programming languages, such as ARM, C, Python, and Java are essentially just interfaces for machine code.  <b>Disassemblers</b> are programs that read machine code, and translate it into assembly code.  Any program can be disassembled, and if you can read assembly, then you can figure out what's going on.</p>
 
@@ -519,7 +519,7 @@ b $08001300     //otherwise it branches to $08001300
     <tr><td></td><td>- <code>DA</code> Decrement After: Decrements the target address <em>after</em> storing a register there</td></tr>
     <tr><td>** </td><td>If <em>writeback</em> is specified, then the register containing the address will be updated with the final position of the target address</td></tr>
     <tr><td>*** </td><td>Note that <code>stmdb sp!</code> is identical to <code>push</code>, and <code>ldmia sp!</code> is identical to <code>pop</code></td></tr>
-    <tr><td>**** </td><td>This table is not a comprehensive list of ARM instructions.  It only contains what you're most likely to see.  Click for more information about <a href="https://www.akkit.org/info/gbatek.htm#thumbinstructionsummary" target="_blank">Thumb</a> and <a href="https://www.akkit.org/info/gbatek.htm#arminstructionsummary" target="_blank">ARM</a> instruction sets</td></tr>
+    <tr><td>**** </td><td>This table is not a comprehensive list of ARM instructions.  It only contains what you're most likely to see.  Click for more information about <a href="https://www.akkit.org/info/gbatek.htm#thumbinstructionsummary" target="_blank" rel="noopener">Thumb</a> and <a href="https://www.akkit.org/info/gbatek.htm#arminstructionsummary" target="_blank" rel="noopener">ARM</a> instruction sets</td></tr>
 </table>
 
 <h2 id="apowerfullanguage">A Powerful Language</h2>
@@ -537,11 +537,11 @@ b $08001300     //otherwise it branches to $08001300
 
 <footer class="flex">
     <div>
-        <a href="index.html"><b>Intro to Binary</b></a>
+        <a href="index.html"><b>Binary</b></a>
         <span class="sep"></span>
         <a href="Logic Gates.html"><b>Logic Gates</b></a>
         <span class="sep"></span>
-        <a href="The Computer Architecture.html"><b>The Computer Architecture</b></a>
+        <a href="Computer Architecture.html"><b>Computer Architecture</b></a>
         <span class="sep"></span>
         <a href="ARM and Thumb.html"><b>ARM and Thumb</b></a>
     </div>

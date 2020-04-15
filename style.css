@@ -145,19 +145,20 @@ code.block {
 
 
 @media screen and (max-width: 1024px) {
-    #Main-Page {margin: 20px auto; padding: 20px; width: 75%;}
-    #BranchAndCallTable tr td code {white-space: pre-wrap}
+    #Main-Page {margin: 20px auto; width: 75%;}
+    #BranchAndCallTable tr td:nth-child(2n) code {white-space: pre-wrap}
 }
 
 @media screen and (max-width: 768px) {
-    #Main-Page {margin: 10px auto; padding: 10px; width: 85%;}
-    header, footer {font-size: 2.2vw}
+    #Main-Page {margin: 10px auto; padding: 20px; width: 85%;}
+    header, footer {font-size: 2.4vw}
     .txt14 {font-size: 12px}
     code {font-size: 12px}
 }
 
 @media screen and (max-width: 600px) {
     #Main-Page {margin: 10px auto; padding: 10px; width: 95%; font-size: 12px}
+    th {font-size: 14px}
     .txt14 {font-size: 2.2vw}
     code {font-size: 2.2vw}
     code.block {font-size: 10px}
