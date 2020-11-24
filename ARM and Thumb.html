@@ -230,7 +230,7 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000C
 
 <p>Computer chips are just logic circuits that can read those bits, and execute the corresponding instructions.  Different commands have different values in those fields, and often have different sizes of fields.  The entire bit field specification of both Thumb and ARM is summarized in <a href="Tables/OpcodeFormats.txt" target="_blank">Opcode Tables</a>, from <a href="https://www.akkit.org/info/gbatek.htm#thumbinstructionsummary" target="_blank" rel="noopener">GBATEK</a>.  The process of converting human-written code into machine code is called <b>compiling</b>.</p>
 
-<p>All programs must be compiled to machine code before the CPU can run them.  Programming languages, such as ARM, C, Python, and Java are essentially just interfaces for machine code.  <b>Disassemblers</b> are programs that read machine code, and translate it into assembly code.  Any program can be disassembled, and if you can read assembly, then you can figure out what's going on.</p>
+<p>All programs must be compiled to machine code before the CPU can run them.  Programming languages, such as ARM, C, Python, and Java are essentially just interfaces for machine code.  <b>Disassemblers</b> are programs that read machine code, and translate it into human-readable assembly code.</p>
 
 <div class="centertxt">
     <div class="quote"><span><em>If you can read Assembly, <b>everything</b> is open source.</em></span></div>
@@ -258,7 +258,7 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000C
 
 <img src="Images/Figure 4-2.png" alt="Stack Diagram">
 
-<p>The bottom of the stack is the <em>highest</em> address of the stack (03007F00 in user mode on the gameboy advance).  As the stack grows, it approaches lower addresses.  If it grows too large, it can interfere with important parts of memory.  This is called a <b>stack overflow</b>.  When data is popped off of the stack, it doesn't actually get deleted, all that happens is the stack pointer moves back down.  That leftover data can be overwritten if more items are pushed onto the stack.</p>
+<p>The bottom of the stack is the <em>highest</em> address of the stack (<code>03007F00</code> in user mode on the gameboy advance).  As the stack grows, it approaches lower addresses.  If it grows too large, it can interfere with important parts of memory.  This is called a <b>stack overflow</b>.  When data is popped off of the stack, it doesn't actually get deleted, all that happens is the stack pointer moves back down.  That leftover data can be overwritten if more items are pushed onto the stack.</p>
 
 <p>Push instructions of multiple registers (Rlists) store the registers in order, with the <em>highest</em> register at the <em>highest</em> address, and the <em>lowest</em> register at the <em>lowest</em> address.</p>
 
@@ -487,15 +487,15 @@ b $08001300     //otherwise it branches to $08001300
 <br>
 
 <h2 id="thearmlanguage">The Arm Language</h2>
-<p>The Arm instruction set is essentially just compound Thumb instructions plus suffixes.  Here's an example:</p>
+<p>The Arm instruction set is essentially just compound Thumb instructions.  Here's an example:</p>
 
 <img src="Images/ArmInstruction.png" alt="ARM instruction fields">
 
 <p>The instruction above performs an <code>and</code> operation between the <b>source register</b> and <b>operand 2</b>, then stores the result in the <b>destination register</b>.  However, it will only do that if the <b>condition</b> (<code>eq</code>) is satisfied in <code>cpsr</code>.  The <code>s</code> for <b>sending to flags</b> is optional.  If <code>s</code> is present, then the result of the operation will update <code>cpsr</code>.</p>
 
-<p><b>Operand 2</b> consists of a register and a shift.  The shift may be any of the shift instructions: <code>lsl</code>, <code>lsr</code>, <code>asr</code>, <code>ror</code>.  The shift is applied to the register, and the result is the value of operand 2.  Operand 2 may alternatively be an immediate number (where <code>Rz</code> and <code>shift</code> are replaced with <code>nn</code>).  This operand is often referred to as a "flexible second operand".</p>
+<p><b>Operand 2</b> consists of a register and a shift.  The shift may be any of the shift instructions: <code>lsl</code>, <code>lsr</code>, <code>asr</code>, <code>ror</code>.  The shift is applied to the register, and the result is the value of operand 2.  Operand 2 may alternatively be an <b>immediate number</b> (where <code>Rz</code> and <code>shift</code> are replaced with an actual number <code>nn</code>).  This operand is often referred to as a "flexible second operand".</p>
 
-<p>Several parts of this instruction are optional.  Instructions may be unconditional, in which case the <b>condition</b> field is omitted.  The <b>send to flags</b> field may be omitted.  If the <b>source register</b> is omitted, then <b>operand 2</b> is added directly to the <b>destination register</b>.</p>
+<p>Several parts of this instruction are optional.  Instructions may be unconditional, in which case the <b>condition</b> field is omitted.  The <b>send to flags</b> field may be omitted.  If the <b>source register</b> is omitted, then <b>operand 2</b> directly affects the <b>destination register</b>.</p>
 
 <p>The <b>command</b> field can be any of the Logical or Arithmetic Thumb commands, such as <code>add</code>, <code>sub</code>, <code>neg</code>, and <code>cmp</code>.  Many of these commands require some fields to be omitted.  Some disassemblers will swap the position of the <b>send to flags</b> field and the <b>condition</b> field.</p>
 
