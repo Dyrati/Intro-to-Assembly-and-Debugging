@@ -258,7 +258,7 @@ r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000C
 
 <img src="Images/Figure 4-2.png" alt="Stack Diagram">
 
-<p>The bottom of the stack is the <em>highest</em> address of the stack (03007F00 for users on the gameboy advance).  As the stack grows, it approaches lower addresses.  If it grows too large, it can interfere with important parts of memory.  This is called a <b>stack overflow</b>.  When data is popped off of the stack, it doesn't actually get deleted, all that happens is the stack pointer moves back down.  That leftover data can be overwritten if more items are pushed onto the stack.</p>
+<p>The bottom of the stack is the <em>highest</em> address of the stack (03007F00 in user mode on the gameboy advance).  As the stack grows, it approaches lower addresses.  If it grows too large, it can interfere with important parts of memory.  This is called a <b>stack overflow</b>.  When data is popped off of the stack, it doesn't actually get deleted, all that happens is the stack pointer moves back down.  That leftover data can be overwritten if more items are pushed onto the stack.</p>
 
 <p>Push instructions of multiple registers (Rlists) store the registers in order, with the <em>highest</em> register at the <em>highest</em> address, and the <em>lowest</em> register at the <em>lowest</em> address.</p>
 
