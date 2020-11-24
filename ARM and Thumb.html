@@ -439,9 +439,17 @@ b $08001300     //otherwise it branches to $08001300
 
 <p><code>cpsr</code> is a 32-bit register, but all that really matters is the upper 4 bits. (The other bits are either unused or not modifiable or accessible to the user.)  Those 4 bits are called <b>the flags</b>.  Each flag has a name, and a unique behavior.  They are the <b>N</b>, <b>Z</b>, <b>C</b>, and <b>V</b> flags.</p>
 
-<p>Comparison instructions actually work by performing an arithmetic operation, without storing the result.  Every arithmetic operation automatically updates the flags.  <code>cmp op1, op2</code> subtracts <code>op2</code> from <code>op1</code>.  If the result of the operation was negative (in other words, if the uppermost bit, <code>bit 31</code>, is set), then the <b>N</b> flag, or <em><b>Negative Flag</b></em>, is set.  If the result was zero, then the <b>Z</b> flag, or <em><b>Zero Flag</b></em>, is set.  If the operation caused the ALU to try to carry a 1 beyond bit 31, the <b>C</b> flag, or <em><b>Carry Flag</b></em>, is set.  If the result is negative after adding two positives, or positive after adding two negatives, then the <b>V</b> flag, or <em><b>Overflow Flag</b></em>, is set. (Note: subtraction is implemented exactly as addition, except the subtracted value is first converted to its opposite.)</p>
+<table>
+    <th>Flag</th><th>Name</th><th>Description</th>
+    <tr><td class="centertxt"><b>N</b></td><td>Negative Flag</td><td>Result was negative (Bit 31 set)</td></tr>
+    <tr><td class="centertxt"><b>Z</b></td><td>Zero Flag</td><td>Result was 0</td></tr>
+    <tr><td class="centertxt"><b>C</b></td><td>Carry Flag</td><td>CPU tried to carry "1" beyond bit 31</td></tr>
+    <tr><td class="centertxt"><b>V</b></td><td>Overflow Flag</td><td>Positive overflowed to Negative, or vice versa</td></tr>
+</table>
 
-<p>Somewhat surprisingly, with just those four flags, you can determine exactly which of those conditions in the conditional suffix list were true.  There are three other comparison instructions: <code>cmn</code> adds its operands, instead of subtracting.  <code>tst</code> performs bitwise AND on its operands, and only updates <b>N</b> and <b>Z</b>. <code>teq</code> (Arm only) performs bitwise XOR on its operands, and also only updates <b>N</b> and <b>Z</b>.</p>
+<p>Comparison instructions actually work by performing an arithmetic operation.  <code>cmp op1, op2</code> subtracts <code>op2</code> from <code>op1</code>.  If the result of the operation was negative (in other words, if the uppermost bit, <code>bit 31</code>, is set), then the <b>N</b> flag, or <em><b>Negative Flag</b></em>, is set.  If the result was zero, then the <b>Z</b> flag, or <em><b>Zero Flag</b></em>, is set.  If the operation caused the ALU to try to carry a 1 beyond bit 31, the <b>C</b> flag, or <em><b>Carry Flag</b></em>, is set.  If the result is negative after adding two positives, or positive after adding two negatives, then the <b>V</b> flag, or <em><b>Overflow Flag</b></em>, is set. (Note: subtraction is implemented exactly as addition, except the subtracted value is first converted to its opposite.)</p>
+
+<p>Somewhat surprisingly, with just those four flags, you can determine exactly which of those conditions in the conditional suffix list are true.  There are three other comparison instructions: <code>cmn</code> adds its operands, instead of subtracting.  <code>tst</code> performs bitwise AND on its operands, and only updates <b>N</b> and <b>Z</b>. <code>teq</code> (Arm only) performs bitwise XOR on its operands, and also only updates <b>N</b> and <b>Z</b>.</p>
 
 <br>
 
