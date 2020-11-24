@@ -321,8 +321,11 @@ r12: 00000000  r13: 03007EF0  r14: 00000000  r15: 08000008
 r12: 00000000  r13: 03007F00  r14: 00000000  r15: 0800000A
 </code>
 
-<span>Note that since the stack is a <b>Last-In-First-Out</b> system, restoring values should be done in the opposite order that they were stored.</span>
-<br><br>
+<p><b>Remarks</b>
+Note that since the stack is a <b>Last-In-First-Out</b> system, restoring values should be done in the opposite order that they were stored.  
+
+<code>03007F00 - 03007FFF</code> is typically used for supervisor calls (svc) and interrupt requests (irq)</p>
+<br>
 
 <h3 id="thelinkregister">The Link Register</h3>
 <p>In programming, a <b>function</b> is a group of instructions.  Functions may be "called", causing those instructions to be executed.  It's a bit like a macro.  Additionally, they may have inputs and outputs.  In assembly, functions are groups of instructions stored at some location in memory.  The typical way to call a function is to use a <code>bl $addr</code> instruction, where <code>$addr</code> is the address of the function.  After jumping to a function address, the program executes the instructions there, and when it's finished, it returns to the spot from which it called the function.
