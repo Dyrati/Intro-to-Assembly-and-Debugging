@@ -351,19 +351,20 @@ This function returns the 4-byte value at address $03000000 + 4*r0
 
 <p>This branch and link system works great until you try to call a function <em>within</em> a function.  As soon as a new <code>bl</code> instruction is executed, the old value of <code>lr</code> is overwritten.  For this reason, functions that call other functions usually push the link register onto the stack before doing anything else.  The function eventually returns by popping that value to the <code>pc</code>.</p>
 
-<code class="block">This function calls $08018400 3 times, returning the sum of the return values 
-    (the return of this function is the value of r0 at the end of the function)
+<code class="block">This function calls $08018400 a number of times, until r1 is 0
+    (the return of this function is whatever is in r0 at the last line)
 
 08018000: B520      push {r5, lr}       //stores r5 and lr on the stack for safekeeping
-08018002: 1C05      add r5, r0, 0x0
-08018004: F9FCF000  bl $08018400
-08018008: 1809      add r1, r1, r0
-0801800A: 1C68      add r0, r5, 0x1
-0801800C: F9F8F000  bl $08018400
-08018010: 1809      add r1, r1, r0
-08018012: 1CA8      add r0, r5, 0x2
-08018014: F9F4F000  bl $08018400
-08018018: 1808      add r0, r1, r0
+08018002: 1C02      mov r2, r0          //stores r0 in r2
+08018004: 2300      mov r3, 0x0         //stores 0 in r3
+08018006: F9FBF000  bl $08018400        //calls the function
+0801800A: 181B      add r3, r3, r0      //adds the return to r3
+0801800C: 3204      add r2, 0x4         //adds 4 to r2
+0801800E: 1C10      mov r0, r2          //stores r2 in r0     
+08018010: 3901      sub r1, 0x1         //subtracts 1 from r1
+08018012: 2900      cmp r1, 0x0         //compares r1 to 0
+08018014: D1F7      bne $08018006       //if r1 wasn't equal to 0, go back to $08018006
+08018016: 1C18      mov r0, r3          //move r3 into r0     
 0801801A: BD20      pop {r5, pc}        //restores r5, and puts the old value of lr in pc
 </code>
 
